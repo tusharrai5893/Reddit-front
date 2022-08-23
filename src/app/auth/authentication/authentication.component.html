@@ -1,0 +1,84 @@
+<div id="signIn" class="auth-form form-SignIn">
+  <form action="" class="form-content form-SignIn">
+    <h2 class="underline">Welcome Redditor</h2>
+    <div class="form-box">
+      <input
+        id="signIn-username"
+        type="text"
+        class="form-input"
+        placeholder="User ID"
+        autocomplete="off"
+      />
+      <label for="" class="form-label">User ID</label>
+      <div class="form-shadow"></div>
+    </div>
+    <div class="form-box">
+      <input
+        id="signIn-password"
+        type="text"
+        class="form-input"
+        placeholder="Secret"
+        autocomplete="off"
+      />
+      <label for="" class="form-label">Secret</label>
+      <div class="form-shadow"></div>
+    </div>
+    <div class="link">
+      <a (click)="onSignIn($event)">Are You One Of Us?</a>
+    </div>
+    <div class="form-button">
+      <input
+        type="Submit"
+        class="form-submit"
+        value="Sign In"
+        (click)="onSignIn($event)"
+      />
+    </div>
+  </form>
+</div>
+
+<div id="signUp" class="auth-form form-SignUp hidden">
+  <form action="" class="form-content">
+    <h2 class="underline">One Of Us</h2>
+
+    <div class="form-box">
+      <input
+        id="signUp-email"
+        type="email"
+        class="form-input"
+        placeholder="Email ID"
+        autocomplete="off"
+      />
+      <label for="" class="form-label">Email ID</label>
+      <div class="form-shadow"></div>
+    </div>
+    <div class="form-box">
+      <input
+        id="signUp-username"
+        type="text"
+        class="form-input"
+        placeholder="User ID"
+        autocomplete="off"
+      />
+      <label for="" class="form-label">User ID</label>
+      <div class="form-shadow"></div>
+    </div>
+    <div class="form-box">
+      <input
+        id="signUp-password"
+        type="password"
+        class="form-input"
+        placeholder="Secret"
+        autocomplete="off"
+      />
+      <label for="" class="form-label">Secret</label>
+      <div class="form-shadow"></div>
+    </div>
+    <div class="link">
+      <a (click)="onSignIn($event)">Go Ahead Sign In</a>
+    </div>
+    <div class="form-button">
+      <input type="Submit" class="form-submit" value="Sign Up" />
+    </div>
+  </form>
+</div>
