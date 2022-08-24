@@ -160,9 +160,19 @@
     zoom: 1.1;
   }
 }
-
+.is-invalid {
+  border: 2px solid red;
+}
+.error {
+  color: red;
+  font-size: small;
+}
+.is-disabled,
+.form-button {
+  color: grey;
+}
 .link > a {
-  padding: 2.25em 0 0 0;
+  margin-top: 2.25em;
   width: fit-content;
   height: fit-content;
   position: absolute;
@@ -182,3 +192,6 @@
   width: 45px;
   background-color: blue;
 }
+/* .underline {
+  filter: drop-shadow(0 0 0.75rem rgba(12, 11, 11, 0.778));
+} */

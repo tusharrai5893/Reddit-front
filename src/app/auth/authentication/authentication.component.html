@@ -1,6 +1,31 @@
 <div id="signIn" class="auth-form form-SignIn">
-  <form action="" class="form-content form-SignIn">
+  <form
+    novalidate
+    (ngSubmit)="doSignIn()"
+    class="form-content form-SignIn"
+    [formGroup]="signInForm"
+  >
     <h2 class="underline">Welcome Redditor</h2>
+    <!-- <span class="error">
+      <span
+        *ngIf="
+          (signInForm.get('username')?.touched ||
+            signInForm.get('username')?.dirty) &&
+          !signInForm.get('username')?.valid
+        "
+      >
+        Dude!! its required.
+      </span>
+      <span
+        *ngIf="
+          (signInForm.get('secret')?.touched ||
+            signInForm.get('secret')?.dirty) &&
+          !signInForm.get('secret')?.valid
+        "
+      >
+        Dude!! its required.
+      </span>
+    </span> -->
     <div class="form-box">
       <input
         id="signIn-username"
@@ -8,6 +33,13 @@
         class="form-input"
         placeholder="User ID"
         autocomplete="off"
+        formControlName="username"
+        [ngClass]="{
+          'is-invalid':
+            (signInForm.get('username')?.touched ||
+              signInForm.get('username')?.dirty) &&
+            !signInForm.get('username')?.valid
+        }"
       />
       <label for="" class="form-label">User ID</label>
       <div class="form-shadow"></div>
@@ -15,23 +47,32 @@
     <div class="form-box">
       <input
         id="signIn-password"
-        type="text"
+        type="password"
         class="form-input"
         placeholder="Secret"
         autocomplete="off"
+        formControlName="secret"
+        [ngClass]="{
+          'is-invalid':
+            (signInForm.get('secret')?.touched ||
+              signInForm.get('secret')?.dirty) &&
+            !signInForm.get('secret')?.valid
+        }"
       />
+
       <label for="" class="form-label">Secret</label>
       <div class="form-shadow"></div>
     </div>
     <div class="link">
-      <a (click)="onSignIn($event)">Are You One Of Us?</a>
+      <a (click)="areYouOneOfUs($event)">Are You One Of Us?</a>
     </div>
     <div class="form-button">
       <input
         type="Submit"
         class="form-submit"
         value="Sign In"
-        (click)="onSignIn($event)"
+        [ngClass]="{ 'is-disabled': !this.signInForm.valid }"
+        [disabled]="!signInForm.get('username')?.valid"
       />
     </div>
   </form>
@@ -75,7 +116,7 @@
       <div class="form-shadow"></div>
     </div>
     <div class="link">
-      <a (click)="onSignIn($event)">Go Ahead Sign In</a>
+      <a (click)="goAheadSignin($event)">Go Ahead Sign In</a>
     </div>
     <div class="form-button">
       <input type="Submit" class="form-submit" value="Sign Up" />
