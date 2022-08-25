@@ -1,58 +1,90 @@
+import { AuthService } from './../shared/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { SignInReqPayload } from './requestPayload/reqSignInPayload';
+import { SignUpReqPayload } from './requestPayload/reqSignUpPayload';
 
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
-  styleUrls: ['./authentication.component.css']
+  styleUrls: ['./authentication.component.css'],
 })
 export class AuthenticationComponent implements OnInit {
-
+  hidden: boolean = true;
   signInReqPayload!: SignInReqPayload;
+  SignUpReqPayload!: SignUpReqPayload;
   signInForm!: FormGroup;
-  constructor(private fb: FormBuilder) {
-    this.initSiginPayload(this.signInForm);
+  signUpForm!: FormGroup;
+  constructor(private fb: FormBuilder, private authService: AuthService) {
+    this.initSigInPayload(this.signInForm);
+    this.initSignUpPayload(this.signUpForm);
   }
 
   ngOnInit(): void {
     this.signInForm = this.getSignInDataFromDOM();
+    this.signUpForm = this.getSignUpDataFromDOM();
   }
+
   areYouOneOfUs(e: Event) {
-    const signIn = document.getElementById("signIn");
-    const signUp = document.getElementById('signUp');
-    signIn?.classList.add("hidden");
-    signUp?.classList.add("block");
+
+    if (this.hidden == true) {
+      this.hidden = false
+    }
   }
   goAheadSignin(e: Event) {
-    const signUp = document.getElementById('signUp');
-    const signIn = document.getElementById("signIn");
-    signUp?.classList.add("hidden");
-    signIn?.classList.add("block");
+    if (this.hidden == false) {
+      this.hidden = true
+    }
+
   }
+  //TODO: signIn functionality
   doSignIn() {
-    const { username, password } = this.initSiginPayload(this.signInForm);
+    this.signInReqPayload = this.initSigInPayload(this.signInForm);
+    this.authService.signInService(this.signInReqPayload).subscribe(data => {
+      console.table(data);
 
+    })
+  }
+  //TODO: signUp functionality
+  doSignUp() {
+    this.SignUpReqPayload = this.initSignUpPayload(this.signUpForm);
+    this.authService.signUpService(this.SignUpReqPayload).subscribe(data => {
+      console.table(data);
 
+    })
 
   }
 
   getSignInDataFromDOM(): FormGroup {
     return this.fb.group({
-      username: ["", [Validators.required, Validators.minLength(5)]],
-      secret: ["", [Validators.required, Validators.minLength(5)]]
+      username: ['', [Validators.required, Validators.minLength(5)]],
+      secret: ['', [Validators.required, Validators.minLength(5)]],
+    });
+  }
+  getSignUpDataFromDOM(): FormGroup {
+    return this.fb.group({
+      email: ['', [Validators.email, Validators.required]],
+      username: ['', [Validators.required, Validators.minLength(5)]],
+      secret: ['', [Validators.required, Validators.minLength(5)]],
     });
   }
 
-  initSiginPayload(signInForm: FormGroup | undefined): SignInReqPayload {
-    return this.signInReqPayload = {
+  initSigInPayload(signInForm: FormGroup | undefined): SignInReqPayload {
+    return (this.signInReqPayload = {
       username: signInForm?.value.username,
       password: signInForm?.value.secret,
-    };
-
+    });
   }
-}// class ends
-
-
-
-
+  initSignUpPayload(signUpForm: FormGroup<any>): SignUpReqPayload {
+    return (this.SignUpReqPayload = {
+      email: signUpForm?.value.email,
+      username: signUpForm?.value.username,
+      password: signUpForm?.value.secret,
+    });
+  }
+} // class ends

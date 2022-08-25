@@ -1,4 +1,5 @@
-<div id="signIn" class="auth-form form-SignIn">
+<!-- TODO: SIGNIN -->
+<div id="signIn" class="auth-form form-SignIn" [hidden]="!hidden">
   <form
     novalidate
     (ngSubmit)="doSignIn()"
@@ -32,7 +33,6 @@
         type="text"
         class="form-input"
         placeholder="User ID"
-        autocomplete="off"
         formControlName="username"
         [ngClass]="{
           'is-invalid':
@@ -50,7 +50,6 @@
         type="password"
         class="form-input"
         placeholder="Secret"
-        autocomplete="off"
         formControlName="secret"
         [ngClass]="{
           'is-invalid':
@@ -72,14 +71,20 @@
         class="form-submit"
         value="Sign In"
         [ngClass]="{ 'is-disabled': !this.signInForm.valid }"
-        [disabled]="!signInForm.get('username')?.valid"
+        [disabled]="!signInForm.valid"
       />
     </div>
   </form>
 </div>
 
-<div id="signUp" class="auth-form form-SignUp hidden">
-  <form action="" class="form-content">
+<!-- TODO: SIGNUP -->
+<div id="signUp" class="auth-form form-SignUp" [hidden]="hidden">
+  <form
+    class="form-content"
+    novalidate
+    (ngSubmit)="doSignUp()"
+    [formGroup]="signUpForm"
+  >
     <h2 class="underline">One Of Us</h2>
 
     <div class="form-box">
@@ -88,7 +93,13 @@
         type="email"
         class="form-input"
         placeholder="Email ID"
-        autocomplete="off"
+        formControlName="email"
+        [ngClass]="{
+          'is-invalid':
+            (signUpForm.get('email')?.touched ||
+              signUpForm.get('email')?.dirty) &&
+            !signUpForm.get('email')?.valid
+        }"
       />
       <label for="" class="form-label">Email ID</label>
       <div class="form-shadow"></div>
@@ -99,7 +110,13 @@
         type="text"
         class="form-input"
         placeholder="User ID"
-        autocomplete="off"
+        formControlName="username"
+        [ngClass]="{
+          'is-invalid':
+            (signUpForm.get('username')?.touched ||
+              signUpForm.get('username')?.dirty) &&
+            !signUpForm.get('username')?.valid
+        }"
       />
       <label for="" class="form-label">User ID</label>
       <div class="form-shadow"></div>
@@ -110,7 +127,13 @@
         type="password"
         class="form-input"
         placeholder="Secret"
-        autocomplete="off"
+        formControlName="secret"
+        [ngClass]="{
+          'is-invalid':
+            (signUpForm.get('secret')?.touched ||
+              signUpForm.get('secret')?.dirty) &&
+            !signUpForm.get('secret')?.valid
+        }"
       />
       <label for="" class="form-label">Secret</label>
       <div class="form-shadow"></div>
@@ -119,7 +142,13 @@
       <a (click)="goAheadSignin($event)">Go Ahead Sign In</a>
     </div>
     <div class="form-button">
-      <input type="Submit" class="form-submit" value="Sign Up" />
+      <input
+        type="Submit"
+        class="form-submit"
+        value="Sign Up"
+        [ngClass]="{ 'is-disabled': !this.signUpForm.valid }"
+        [disabled]="!signUpForm.valid"
+      />
     </div>
   </form>
 </div>
