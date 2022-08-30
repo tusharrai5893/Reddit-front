@@ -35,8 +35,5 @@ body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   background-color: var(--body-white-color);
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
 }

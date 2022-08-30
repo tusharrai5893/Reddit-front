@@ -14,27 +14,19 @@
 }
 
 /*=============== MODERN INPUT ===============*/
-
-#signIn,
-#signUp {
-  margin-top: 270px;
+.center {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
 }
-
 .auth-form {
+  position: absolute;
   background-color: var(--white-color);
   padding: 20px 20px;
-  box-shadow: 0 4px 8px 0 rgba(171, 171, 171, 0.651),
-    0 6px 20px 0 rgba(188, 188, 188, 0.064);
-}
-
-.hidden {
-  display: none;
-  opacity: 0;
-}
-
-.block {
-  display: block;
-  opacity: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 .form-content {
@@ -163,15 +155,29 @@
   }
 }
 .is-invalid {
-  border: 2px solid red;
+  border: 2px solid rgb(189, 42, 42);
 }
 .error {
-  color: red;
+  color: rgb(189, 42, 42);
   font-size: small;
 }
-.is-disabled,
-.form-button:not(:hover) {
-  color: grey;
+.is-disabled {
+  animation: shake 300ms;
+}
+.invalid-form {
+  filter: grayscale(1);
+  cursor: not-allowed;
+}
+@keyframes shake {
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
 }
 .link > a {
   margin-top: 2.25em;
@@ -185,15 +191,13 @@
   cursor: pointer;
 }
 .link :hover {
-  color: blue;
+  color: rgb(44, 0, 189);
+  font-weight: 600;
 }
 .underline::before {
   content: "";
   position: absolute;
-  height: 3px;
+  height: 4px;
   width: 45px;
-  background-color: blue;
+  background-color: rgb(44, 0, 189);
 }
-/* .underline {
-  filter: drop-shadow(0 0 0.75rem rgba(12, 11, 11, 0.778));
-} */

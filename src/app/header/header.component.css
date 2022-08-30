@@ -1,0 +1,130 @@
+* {
+  font-size: var(--normal-font-size);
+  font-family: var(--body-font);
+}
+.reddit-icon > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-right: 10px;
+  position: relative;
+  flex: 1;
+}
+.name {
+  height: 50px;
+  width: 50px;
+}
+.icon {
+  height: 50px;
+  width: auto;
+  margin: 1px;
+  padding: 7px;
+  position: relative;
+  filter: drop-shadow(0 0 0.3em crimson);
+}
+
+nav {
+  background: white;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  position: sticky;
+  z-index: 100;
+  padding: 3px 0;
+}
+.search-input {
+  padding: 9px;
+  outline: none;
+  border: 2px;
+  transition: transform 0.2s;
+  width: 385px;
+  margin-right: 4em;
+  position: relative;
+  background: whitesmoke;
+}
+.search-input:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  border: 1px solid black;
+  transition: transform 0.3s;
+}
+.search-input::placeholder {
+  transition: opacity 0.5s;
+  padding: 1rem;
+}
+.search-input:focus {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  border: 1px solid black;
+}
+.search-input:focus::placeholder {
+  opacity: 0;
+  transition: 0.3s;
+}
+.search-box {
+  display: flex;
+  flex: 2;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+.user-profile > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid black;
+}
+
+.settings-menu {
+  position: absolute;
+  width: 90%;
+  width: auto;
+  min-width: 300px;
+  height: auto;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  top: 40px;
+  right: 1%;
+  display: none;
+  padding: 8px 10px;
+  max-height: 0%;
+  transition: slide 1s;
+}
+.settings-menu-height {
+  display: block;
+  max-height: 350px;
+  border: 1.5px solid black;
+  padding: 8px 10px;
+}
+.settings-menu a {
+  text-decoration: none;
+  font-size: 12px;
+  margin-left: 10px;
+}
+.settings-menu > .user-profile {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 15px 10px;
+}
+.settings-menu p {
+  margin-left: 10px;
+  line-height: 1;
+  font-size: 15px;
+}
+
+.settings-menu,
+ul li {
+  list-style: none;
+  margin: 10px 10px;
+  font-size: 15px;
+  font-weight: 100;
+}

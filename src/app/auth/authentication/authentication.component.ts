@@ -1,3 +1,4 @@
+import { LocalStorageService } from 'ngx-webstorage';
 import { AuthService } from './../shared/auth.service';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -8,6 +9,8 @@ import {
 } from '@angular/forms';
 import { SignInReqPayload } from './requestPayload/reqSignInPayload';
 import { SignUpReqPayload } from './requestPayload/reqSignUpPayload';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-authentication',
@@ -20,44 +23,88 @@ export class AuthenticationComponent implements OnInit {
   SignUpReqPayload!: SignUpReqPayload;
   signInForm!: FormGroup;
   signUpForm!: FormGroup;
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService,
+    private localStorage: LocalStorageService
+  ) {
     this.initSigInPayload(this.signInForm);
     this.initSignUpPayload(this.signUpForm);
   }
 
   ngOnInit(): void {
+    this.localStorage.clear();
     this.signInForm = this.getSignInDataFromDOM();
     this.signUpForm = this.getSignUpDataFromDOM();
   }
 
-  areYouOneOfUs(e: Event) {
-
+  areYouOneOfUs() {
     if (this.hidden == true) {
-      this.hidden = false
+      this.hidden = false;
     }
   }
-  goAheadSignin(e: Event) {
+  goAheadSignin() {
     if (this.hidden == false) {
-      this.hidden = true
+      this.hidden = true;
     }
-
   }
   //TODO: signIn functionality
+  //FIXME: Add reset form and validation
   doSignIn() {
     this.signInReqPayload = this.initSigInPayload(this.signInForm);
-    this.authService.signInService(this.signInReqPayload).subscribe(data => {
-      console.table(data);
-
-    })
+    this.authService.signInService(this.signInReqPayload).subscribe(
+      (data) => {
+        if (data) {
+          this.toastr.success('Logged In, Yayy');
+          this.router.navigate(['feed']);
+        } else {
+          this.toastr.error('Wrong Credentials, Retry Again');
+        }
+      },
+      (error) => {
+        document.querySelector('#signIn')?.classList.add('is-disabled');
+        this.toastr.error(`Uhh Ohh, Try Again Later 🙏🏼`);
+      }
+    );
+    this.toastr.clear();
   }
   //TODO: signUp functionality
   doSignUp() {
     this.SignUpReqPayload = this.initSignUpPayload(this.signUpForm);
-    this.authService.signUpService(this.SignUpReqPayload).subscribe(data => {
-      console.table(data);
+    this.authService.signUpService(this.SignUpReqPayload).subscribe(
+      (next) => {
+        console.log('success');
 
-    })
+        this.toastr.success('Welcome To Our Community', '', {
+          disableTimeOut: false,
+          closeButton: true,
+          easeTime: 300,
+        });
+        this.toastr.info(
+          'Activation Email Has been sent to your Mail',
+          'Activation Notification',
+          {
+            disableTimeOut: true,
+            closeButton: true,
+            easeTime: 2000,
+          }
+        );
+        this.goAheadSignin();
+      },
+      (error) => {
+        console.log('failed');
+        document.querySelector('#signUp')?.classList.add('is-disabled');
+        this.toastr.error('Sign Up failed! Please Try Again', '', {
+          closeButton: true,
+          easeTime: 300,
+        });
+      }
+    );
 
+    this.toastr.clear();
   }
 
   getSignInDataFromDOM(): FormGroup {

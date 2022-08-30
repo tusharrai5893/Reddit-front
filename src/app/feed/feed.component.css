@@ -1,0 +1,47 @@
+.feed-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 13px 5%;
+}
+
+.left-container {
+  flex-basis: 25%;
+  position: sticky;
+  top: 70px;
+  align-self: flex-start;
+}
+
+.right-container {
+  flex-basis: 25%;
+  position: sticky;
+  top: 70px;
+  align-self: flex-start;
+}
+.middle-container {
+  flex-basis: 47%;
+  background: #cbdffa;
+}
+.imp-links a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  color: #636363;
+  width: fit-content;
+}
+.links {
+  margin: auto;
+  font-weight: 500;
+  border-bottom: 1px solid black;
+  height: auto;
+  width: fit-content;
+}
+.links a:last-child {
+  color: #1876f2;
+}
+.active {
+  background: white;
+  padding: 10px 10px;
+  height: auto;
+  border: 1px solid black;
+}
