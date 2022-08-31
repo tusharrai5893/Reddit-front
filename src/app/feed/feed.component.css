@@ -19,7 +19,12 @@
 }
 .middle-container {
   flex-basis: 47%;
-  background: #cbdffa;
+  border: 1px solid black;
+  margin: 0 10px;
+}
+.middle-container:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  background-color: white;
 }
 .imp-links a {
   text-decoration: none;
@@ -28,20 +33,102 @@
   margin-bottom: 30px;
   color: #636363;
   width: fit-content;
+  transition: transform 0.3s;
+  z-index: 10;
 }
 .links {
-  margin: auto;
-  font-weight: 500;
   border-bottom: 1px solid black;
   height: auto;
   width: fit-content;
 }
 .links a:last-child {
-  color: #1876f2;
+  color: #3c35ba;
 }
 .active {
   background: white;
   padding: 10px 10px;
   height: auto;
   border: 1px solid black;
+}
+
+.imp-links :hover {
+  transform: translate(4px, 4px);
+  animation: input-animation 0.3s;
+  font-weight: 800;
+  background: fixed;
+  color: black;
+}
+
+/* feed css */
+.post-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+}
+.vote-container {
+  position: relative;
+  display: flex;
+  border-right: 1px solid #ccc;
+  flex-direction: column;
+}
+.vote-container,
+.vote-count > fa-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3px 3px 0 3px;
+  font-size: larger;
+}
+.post-msg-view {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.post-msg-view > .post-user-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 15px;
+  border-bottom: 1px solid #ccc;
+  flex-basis: 10%;
+  margin: 3px 5px;
+  color: #636363;
+}
+.dot {
+  position: relative;
+  display: list-item;
+  list-style-position: inside;
+  padding-left: 5px;
+  margin-left: 2px;
+  color: black;
+  border-radius: 50%;
+}
+.post-msg-view > .post-title {
+  font-size: 1.5em;
+  padding: 1px 5px;
+  border-bottom: 1px solid #ccc;
+  flex-basis: 10%;
+  margin: 3px 5px;
+  text-align: start;
+  width: 100%;
+  outline: none;
+}
+.post-msg-view > .post-desc {
+  padding: 1px 5px;
+  border-bottom: 1px solid #ccc;
+  flex-basis: 70%;
+  margin: 3px 5px;
+  text-align: start;
+  width: 100%;
+  outline: none;
+}
+.post-msg-view > .comment-view {
+  padding: 1px 5px;
+  flex-basis: 10%;
+  margin: 3px 5px;
+}
+.comment-view > fa-icon {
+  margin: 0 3px;
 }

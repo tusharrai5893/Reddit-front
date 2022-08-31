@@ -9,9 +9,4 @@ export class HeaderComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  dropdown() {
-    const dp = document.querySelector('.settings-menu');
-    dp?.classList.toggle('settings-menu-height');
-  }
 }

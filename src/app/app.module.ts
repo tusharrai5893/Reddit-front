@@ -12,9 +12,15 @@ import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './auth/authentication/authentication.component';
 import { FeedComponent } from './feed/feed.component';
 import { HeaderComponent } from './header/header.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-  declarations: [AppComponent, AuthenticationComponent, FeedComponent, HeaderComponent],
+  declarations: [
+    AppComponent,
+    AuthenticationComponent,
+    FeedComponent,
+    HeaderComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,6 +32,7 @@ import { HeaderComponent } from './header/header.component';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+    FontAwesomeModule,
   ],
   providers: [
     {

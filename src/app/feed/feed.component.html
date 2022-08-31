@@ -1,8 +1,8 @@
 <div class="feed-container">
   <div class="left-container links">
     <div class="imp-links">
-      <a routerLink="posts" class="active">Posts</a>
-      <a routerLink="watch">Watch</a>
+      <a routerLink="posts">Posts </a>
+      <a routerLink="watch" class="active">Watch</a>
       <a routerLink="communities">Communities</a>
       <a routerLink="show-more">See More</a>
     </div>
@@ -10,15 +10,38 @@
   <div class="middle-container feed">
     <div class="post-container">
       <div class="vote-container vertical-left">
-        <button>Upvote</button>
+        <fa-icon [icon]="faSquareCaretUp" title="Up Vote"></fa-icon>
         <div class="vote-count">123</div>
-        <button>downvote</button>
+        <fa-icon [icon]="faSquareCaretDown" title="Down Vote"></fa-icon>
       </div>
       <div class="post-msg-view">
-        <div class="post-user-details">user</div>
-        <div class="post-title">post title</div>
-        <div class="post-desc">post message</div>
-        <div class="comment-view">comment</div>
+        <div class="post-user-details">
+          r/redditClone
+          <div class="dot"></div>
+          Posted by u/tushar
+          <div class="dot"></div>
+          20 mins ago
+        </div>
+        <div class="post-title" [contentEditable]="true">
+          <h3>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
+            expedita ut cum dignissimos? Nemo distinctio eveniet nobis porro,
+            consectetur aut quidem molestias deleniti doloremque facilis earum
+            eius pariatur. Praesentium, sequi.
+          </h3>
+        </div>
+        <div class="post-desc">
+          <h3>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
+            expedita ut cum dignissimos? Nemo distinctio eveniet nobis porro,
+            consectetur aut quidem molestias deleniti doloremque facilis earum
+            eius pariatur. Praesentium, sequi.
+          </h3>
+        </div>
+        <div class="comment-view">
+          <fa-icon [icon]="faMessage"> </fa-icon>
+          Comment (20)
+        </div>
       </div>
     </div>
   </div>

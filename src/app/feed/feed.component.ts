@@ -2,6 +2,13 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import {
+  faCoffee,
+  faComment,
+  faMessage,
+  faSquareCaretDown,
+  faSquareCaretUp,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-feed',
@@ -9,6 +16,9 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./feed.component.css'],
 })
 export class FeedComponent implements OnInit {
+  faSquareCaretUp = faSquareCaretUp;
+  faSquareCaretDown = faSquareCaretDown;
+  faMessage = faMessage;
   constructor(
     private _http: HttpClient,
     private localStorage: LocalStorageService
