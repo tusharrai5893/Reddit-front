@@ -66,6 +66,9 @@ export class AuthenticationComponent implements OnInit {
       },
       (error) => {
         document.querySelector('#signIn')?.classList.add('is-disabled');
+        setTimeout(() => {
+          document.querySelector('#signIn')?.classList.remove('is-disabled');
+        }, 1000);
         this.toastr.error(`Uhh Ohh, Try Again Later 🙏🏼`);
       }
     );
@@ -79,7 +82,6 @@ export class AuthenticationComponent implements OnInit {
         console.log('success');
 
         this.toastr.success('Welcome To Our Community', '', {
-          disableTimeOut: false,
           closeButton: true,
           easeTime: 300,
         });
@@ -87,7 +89,6 @@ export class AuthenticationComponent implements OnInit {
           'Activation Email Has been sent to your Mail',
           'Activation Notification',
           {
-            disableTimeOut: true,
             closeButton: true,
             easeTime: 2000,
           }
@@ -97,6 +98,9 @@ export class AuthenticationComponent implements OnInit {
       (error) => {
         console.log('failed');
         document.querySelector('#signUp')?.classList.add('is-disabled');
+        setTimeout(() => {
+          document.querySelector('#signUp')?.classList.remove('is-disabled');
+        }, 100);
         this.toastr.error('Sign Up failed! Please Try Again', '', {
           closeButton: true,
           easeTime: 300,
@@ -109,15 +113,15 @@ export class AuthenticationComponent implements OnInit {
 
   getSignInDataFromDOM(): FormGroup {
     return this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(5)]],
-      secret: ['', [Validators.required, Validators.minLength(5)]],
+      username: ['', [Validators.required]],
+      secret: ['', [Validators.required]],
     });
   }
   getSignUpDataFromDOM(): FormGroup {
     return this.fb.group({
       email: ['', [Validators.email, Validators.required]],
-      username: ['', [Validators.required, Validators.minLength(5)]],
-      secret: ['', [Validators.required, Validators.minLength(5)]],
+      username: ['', [Validators.required]],
+      secret: ['', [Validators.required]],
     });
   }
 

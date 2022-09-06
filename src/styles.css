@@ -18,9 +18,9 @@
 }
 
 /* Responsive typography */
-@media screen and (min-width: 968px) {
+@media screen and (max-width: 900px) {
   :root {
-    --normal-font-size: 1rem;
+    --normal-font-size: 0.938rem;
   }
 }
 
@@ -35,5 +35,12 @@ body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   background-color: var(--body-white-color);
-  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
 }

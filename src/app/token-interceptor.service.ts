@@ -4,6 +4,7 @@ import {
   HttpErrorResponse,
   HttpEvent,
   HttpHandler,
+  HttpHeaders,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
@@ -17,8 +18,9 @@ import {
 } from 'rxjs';
 
 @Injectable()
-export class TokenInterceptor implements HttpInterceptor {
+export class MyTokenInterceptor implements HttpInterceptor {
   isTokenRefershing = false;
+  setTokenHeaderInReqMody!: HttpRequest<any>;
   refershTokenBehaviourSubject: BehaviorSubject<any> = new BehaviorSubject(
     null
   );
@@ -30,16 +32,19 @@ export class TokenInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     if (
       req.url.indexOf('refreshToken') !== -1 ||
-      req.url.indexOf('login') !== -1
+      req.url.indexOf('login') !== -1 ||
+      req.url.indexOf('signup') !== -1
     ) {
       return next.handle(req);
     }
     const jwtToken = this._authService.getJwtTokenFromLocalStorage();
     if (jwtToken) {
-      this.addTokenInHeader(req, jwtToken);
+      console.log('jwt ', req);
+      this.setTokenHeaderInReqMody = this.addTokenInHeader(req, jwtToken);
     }
-    return next.handle(req).pipe(
+    return next.handle(this.setTokenHeaderInReqMody).pipe(
       catchError((err) => {
+        console.log('refresh ', req);
         if (err instanceof HttpErrorResponse && err.status === 403) {
           return this.handle403Errors(req, next);
         } else {
@@ -47,13 +52,14 @@ export class TokenInterceptor implements HttpInterceptor {
         }
       })
     );
-  }
+  } //intercept ends
 
   private handle403Errors(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     if (!this.isTokenRefershing) {
+      console.log('inhere');
       this.isTokenRefershing = true;
       this.refershTokenBehaviourSubject.next(null);
       return this._authService.getRefreshTokenfromLocalStorage().pipe(
@@ -69,9 +75,9 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(req);
   }
 
-  addTokenInHeader(req: HttpRequest<any>, jwtToken: string) {
+  addTokenInHeader(req: HttpRequest<any>, jwtToken: string): HttpRequest<any> {
     return req.clone({
-      headers: req.headers.set('Authorization', 'Bearer ' + jwtToken),
+      headers: req.headers.set('Authorization', `Bearer ${jwtToken}`),
     });
   }
 } // interceptor class ends

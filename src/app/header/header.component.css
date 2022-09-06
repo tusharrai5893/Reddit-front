@@ -2,14 +2,41 @@
   font-size: var(--normal-font-size);
   font-family: var(--body-font);
 }
-.reddit-icon > a {
+nav {
+  background: white;
+  flex-direction: row;
+  width: 100vw;
+  display: flex;
+  z-index: 100;
+  position: fixed;
+  top: 1px;
+}
+.reddit-icon {
+  display: flex;
+  flex-direction: row;
+  flex: content;
+  justify-content: flex-start;
+}
+.search-box {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  margin-right: 10px;
-  position: relative;
-  flex: 1;
+  flex: content;
+  justify-content: flex-end;
+  padding-left: 5px;
+  padding-right: 5px;
 }
+.user-profile {
+  display: flex;
+  align-items: center;
+  flex: content;
+  flex-shrink: inherit;
+  justify-content: flex-end;
+}
+.reddit-icon > a {
+  display: flex;
+  position: relative;
+}
+
 .name {
   height: 50px;
   width: 50px;
@@ -22,57 +49,32 @@
   position: relative;
   filter: drop-shadow(0 0 0.3em crimson);
 }
-
-nav {
-  background: white;
-  flex-direction: row;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  position: sticky;
-  z-index: 100;
-  padding: 3px 0;
-}
+/* search-box-css */
 .search-input {
   padding: 9px;
   outline: none;
-  border: 2px;
+  border: 1px;
   transition: transform 0.2s;
-  width: 385px;
-  margin-right: 4em;
+  width: 100%;
   position: relative;
+  border: 1px solid black;
   background: whitesmoke;
 }
 .search-input:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  border: 1px solid black;
   transition: transform 0.3s;
 }
 .search-input::placeholder {
-  transition: opacity 0.5s;
-  padding: 1rem;
+  transition: opacity 0.2s;
+  margin-left: 1rem;
 }
 .search-input:focus {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  border: 1px solid black;
 }
 .search-input:focus::placeholder {
   opacity: 0;
-  transition: 0.3s;
-}
-.search-box {
-  display: flex;
-  flex: 2;
-  align-items: center;
-  justify-content: center;
 }
 
-.user-profile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-}
 .user-profile > img {
   width: 40px;
   height: 40px;
@@ -86,11 +88,9 @@ nav {
   width: auto;
   min-width: 300px;
   height: auto;
-  overflow: hidden;
   top: 50px;
-  right: 1%;
+  right: 0.75%;
   padding: 8px 10px;
-
   background: white;
   border: 1.5px solid black;
 }
@@ -124,6 +124,14 @@ ul li {
 details > summary {
   margin-left: 3px;
   padding-left: 3px;
-  padding-right: 0;
   cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  * {
+    flex-direction: row;
+  }
+  .name {
+    display: none;
+  }
 }

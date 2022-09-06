@@ -1,14 +1,15 @@
-import { LocalStorageService } from 'ngx-webstorage';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { PostDTO } from './payload/noOfPosts';
+import { environment } from './../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { SubredditResponse } from './payload/Subreddit.resp';
+import { finalize, Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import {
-  faCoffee,
-  faComment,
   faMessage,
   faSquareCaretDown,
   faSquareCaretUp,
 } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../auth/shared/auth.service';
 
 @Component({
   selector: 'app-feed',
@@ -19,21 +20,19 @@ export class FeedComponent implements OnInit {
   faSquareCaretUp = faSquareCaretUp;
   faSquareCaretDown = faSquareCaretDown;
   faMessage = faMessage;
-  constructor(
-    private _http: HttpClient,
-    private localStorage: LocalStorageService
-  ) {}
 
-  ngOnInit(): void {}
-  ngAfterContentInit(): void {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${this.localStorage.retrieve('AUTH_JWT_TOKEN')}`,
+  allSubReddit!: Array<SubredditResponse>;
+  post!: PostDTO[];
+  constructor(private _authService: AuthService, private _http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.getAllSubredditFromService();
+  }
+  getAllSubredditFromService() {
+    this._authService.getAllPosts().subscribe((res) => {
+      console.log(res);
+
+      this.post = res;
     });
-    this._http
-      .get(environment.base_url + 'subreddit/fetchAll-subreddit', {
-        headers: headers,
-      })
-      .forEach((res) => document.writeln(JSON.stringify(res)));
   }
 }

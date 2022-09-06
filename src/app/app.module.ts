@@ -1,4 +1,4 @@
-import { TokenInterceptor } from './token-interceptor.service';
+import { MyTokenInterceptor } from './token-interceptor.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -37,7 +37,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
+      useClass: MyTokenInterceptor,
       multi: true,
     },
   ],

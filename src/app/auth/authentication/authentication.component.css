@@ -12,16 +12,15 @@
   --normal-font-size: 0.938rem;
   --tiny-font-size: 0.563rem;
 }
-
 /*=============== MODERN INPUT ===============*/
 .center {
-  height: 100vh;
-  width: 100vw;
   display: flex;
+  min-height: 100vh;
   position: relative;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
+
 .auth-form {
   position: absolute;
   background-color: var(--white-color);

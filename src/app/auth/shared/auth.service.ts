@@ -1,6 +1,8 @@
+import { PostDTO } from './../../feed/payload/noOfPosts';
+import { SubredditResponse } from './../../feed/payload/Subreddit.resp';
 import { SignUpReqPayload } from './../authentication/requestPayload/reqSignUpPayload';
-import { HttpClient } from '@angular/common/http';
-import { Injectable, Optional } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { SignInReqPayload } from '../authentication/requestPayload/reqSignInPayload';
 import { ResSignInPayload } from '../authentication/requestPayload/resSignInPayload';
@@ -41,6 +43,15 @@ export class AuthService {
           return true;
         })
       );
+  }
+  getAllSubreddit(): Observable<Array<SubredditResponse>> {
+    return this._http.get<Array<SubredditResponse>>(
+      this.BASE_URL + 'subreddit/fetchAll-subreddit'
+    );
+  }
+
+  getAllPosts(): Observable<Array<PostDTO>> {
+    return this._http.get<Array<PostDTO>>(this.BASE_URL + 'post/fetchAll-post');
   }
 
   getJwtTokenFromLocalStorage(): string {
