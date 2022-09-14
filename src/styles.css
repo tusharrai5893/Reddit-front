@@ -29,13 +29,15 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  transition: all 0.2s ease-in-out;
 }
-
+nav {
+  transition: all 0.2s ease-in-out;
+}
 body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
-  background-color: var(--body-white-color);
-  transition: all 0.2s ease-in-out;
+  background-color: #dae0e6;
 }
 
 .user-profile {

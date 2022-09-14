@@ -1,0 +1,72 @@
+.editor {
+  top: 1rem;
+  left: 15rem;
+  padding: 1rem;
+  position: absolute;
+  font-family: Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.community-dropdown {
+  margin: 10px 0;
+  position: relative;
+}
+
+/* ------------ */
+/*the container must be positioned relative:*/
+select {
+  position: absolute;
+  padding: 1rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  width: auto;
+}
+
+/*style items (options):*/
+.select-items {
+  position: relative;
+}
+
+/* ------------ */
+
+.header-create-post {
+  position: relative;
+}
+.header-create-post > * {
+  margin: 1rem 0;
+}
+hr {
+  margin: 10px 0;
+}
+.form-box {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 7px;
+}
+.post-title-control > input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  outline: none;
+}
+.post-title-control > input:focus {
+  border: 1px dashed blueviolet;
+  padding: 13px;
+}
+.submit-post {
+  position: relative;
+  border-top: 1px dashed black;
+  margin: 10px 0 0 0;
+}
+.submit-post > input {
+  float: right;
+  margin: 20px 0 0 10px;
+  padding: 8px;
+  font-size: 1em;
+  font-weight: 800;
+}
+
+.submit-post > input:hover {
+  border: 1px dashed blueviolet;
+}

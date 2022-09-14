@@ -1,12 +1,11 @@
+/* feed */
+
 .feed-container {
   display: flex;
   flex-direction: row;
 }
 .left-container {
-  flex-grow: 1.5;
-  margin-right: 0.5%;
-  margin-top: 4.5%;
-  margin-bottom: 10%;
+  flex-grow: 1;
 }
 .links {
   display: flex;
@@ -16,6 +15,7 @@
 .imp-links {
   position: fixed;
   font-size: 1.4rem;
+  margin-bottom: 3rem;
 }
 .imp-links ul li {
   list-style: none;
@@ -28,12 +28,10 @@
 .links ul li:last-child {
   color: #356fba;
 }
-/* .links ul li:last-child,
-.links ul li:hover {
-  color: #356fba;
-} */
 
-.active {
+.active,
+li:hover,
+li:focus {
   background: white;
   padding: 10px 10px;
   height: auto;
@@ -47,159 +45,34 @@
 }
 
 .right-container {
-  margin-top: 4.5%;
-  flex-grow: 2;
-  margin-left: 0.5%;
+  flex-grow: 1;
+  margin-top: 5px;
 }
 .community {
   position: fixed;
 }
 
+/* middle css */
 .feed {
-  flex-grow: 3.5;
-  margin-top: 4.5%;
+  flex-grow: 1;
+  margin-top: 7px;
   height: 100vh;
-  background-color: #4e61f0;
-}
-
-.middle-container {
-  border: 1px solid black;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
-.middle-container:nth-last-child(n) {
-  margin-bottom: 10px;
-}
-
-.middle-container:hover {
-  background-color: white;
-}
-
-/* feed css */
-.post-container {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  border-bottom: 10px;
-  height: auto;
-}
-hr {
-  margin: 10px 10px;
-}
-.vote-container {
-  position: relative;
-  display: flex;
-  border-right: 1px solid #ccc;
-  flex-direction: column;
-}
-.vote-container,
-.vote-count > fa-icon {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 3px 3px 0 3px;
-  font-size: larger;
-}
-
-.vote-container > fa-icon {
-  margin: 0.25rem 0.25rem;
-  outline: none;
-  cursor: pointer;
-  border: none;
-}
-
-.vote-count {
-  font-size: 0.95rem;
-}
-.post-msg-view {
-  width: 100%;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.post-msg-view > .post-user-details {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  border-bottom: 1px solid #ccc;
-  flex-basis: 10%;
-  color: #636363;
-}
-.post-user-info > ul {
-  display: flex;
-  font-size: 0.9em;
-  flex-direction: row;
-  list-style: none;
-}
-
-.post-user-info > ul > li {
-  display: list-item;
-  margin: 0 3px 0 3px;
-  padding: 0 3px 0 3px;
-  list-style-type: disc;
-  list-style-position: inside;
-  color: black;
-}
-
-.post-msg-view > .post-title {
-  font-size: 1.5em;
-  padding: 1px 5px;
-  border-bottom: 1px solid #ccc;
-  flex-basis: 10%;
-  margin: 3px 5px;
-  text-align: start;
-  width: 100%;
-  outline: none;
-}
-.post-msg-view > .post-desc {
-  padding: 1px 5px;
-  border-bottom: 1px solid #ccc;
-  flex-basis: 70%;
-  margin: 3px 5px;
-  text-align: start;
-  width: 100%;
-  outline: none;
-}
-.post-msg-view > .comment-view {
-  flex-basis: 10%;
-  margin: 1px 5px;
-}
-.comment-view > fa-icon {
-  margin: 0 3px;
-}
-.comment-view > button {
-  margin: 3px 0;
-  padding: 8px 8px;
-  outline: none;
-  cursor: pointer;
-  border: none;
-}
-.comment-view > button:hover {
-  background-color: black;
-  color: white;
 }
 
 .feed > .load-more {
   display: flex;
-  flex-direction: column;
-  font-size: medium;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  font-size: medium;
 }
 .load-more > button {
   padding: 10px 10px;
   margin: 10px 10px;
   cursor: pointer;
 }
-.user-profile > img {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  border: 2px solid #4ef059;
-}
-@media screen and (max-width: 810px) {
-  * {
-    --normal-font-size: 0.9rem;
+@media screen and (max-width: 977px) {
+  .post-user-info {
+    font-size: 0.9rem;
   }
   .left-container,
   .right-container {
@@ -212,7 +85,7 @@ hr {
   }
 }
 
-@media screen and (max-width: 375px) {
+@media (max-width: 390px) or (max-width: 375px) or (max-width: 393px) or (max-width: 414px) {
   .post-user-info {
     font-size: 0.7rem;
   }

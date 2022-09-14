@@ -3,77 +3,28 @@
   <div class="left-container links">
     <div class="imp-links">
       <ul>
-        <li routerLink="posts" class="active">Posts</li>
+        <li routerLink="posts">Posts</li>
         <li routerLink="watch">Watch</li>
         <li routerLink="communities">Communities</li>
         <li routerLink="show-more">See More</li>
       </ul>
     </div>
   </div>
+
   <!-- middle -->
   <div class="feed">
-    <div class="middle-container" *ngFor="let singlePost of post; let idx = index">
-      <div class="post-container">
-        <div class="vote-container">
-          <fa-icon [icon]="faSquareCaretUp" title="Up Vote"></fa-icon>
+    <!-- post-view-placeholder -->
+    <app-post-view></app-post-view>
 
-          <div class="vote-count">{{ singlePost.voteCount }}</div>
-
-          <fa-icon [icon]="faSquareCaretDown" title="Down Vote"></fa-icon>
-        </div>
-        <div class="post-msg-view">
-          <div class="post-user-details">
-            <div class="user-profile">
-              <img
-                src="https://images.pexels.com/users/avatars/2587816/riccardo-bertolo-116.jpeg?auto=compress&fit=crop&h=130&w=130&dpr=2" />
-            </div>
-            <div class="post-user-info">
-              <div>
-                <span>{{ singlePost.subredditName }}</span>
-                <span>Posted by u/{{ singlePost.userName }}</span>
-                <span>{{ singlePost.duration }}</span>
-              </div>
-            </div>
-          </div>
-          <div class="post-title">
-            <h4>
-              {{ singlePost.postName }}
-            </h4>
-
-            <!-- <div class="post-desc" contenteditable="false">
-            <p>
-              {{ singlePost.postDescription }}
-            </p>
-          </div> -->
-            <div class="">
-              <img
-                src="https://images.pexels.com/users/avatars/2587816/riccardo-bertolo-116.jpeg?auto=compress&fit=crop&h=130&w=130&dpr=2" />
-            </div>
-            <p class="post-desc" contenteditable="true">
-              {{ singlePost.postDescription }}
-            </p>
-          </div>
-          <div class="comment-view">
-            <button>
-              <fa-icon [icon]="faMessage"> </fa-icon>
-              Comment ({{ singlePost.commentCount }})
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr />
-    <div class="load-more">
-      <button>Load More</button>
+    <div class="load-more" *ngIf="isPostThere">
+      <button>hmm, no post yet,Pls Login</button>
     </div>
   </div>
 
   <!-- right -->
   <div class="right-container">
     <div class="community">
-      <div class="communtiy-cover-card">Subreddit Card</div>
-      <div class="communtiy-cover-card">Subreddit Card</div>
-      <div class="communtiy-cover-card">Subreddit Card</div>
+      <app-famous-community></app-famous-community>
     </div>
   </div>
 </div>

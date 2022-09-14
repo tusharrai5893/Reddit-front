@@ -1,0 +1,58 @@
+<div class="middle-container" *ngFor="let singlePost of post">
+  <div class="post-container">
+    <app-vote [postToVoteView]="singlePost"></app-vote>
+    <div class="post-msg-view">
+      <div class="post-user-details">
+        <div class="user-profile">
+          <img
+            src="https://images.pexels.com/users/avatars/2587816/riccardo-bertolo-116.jpeg?auto=compress&fit=crop&h=130&w=130&dpr=2"
+          />
+        </div>
+        <div class="post-user-info">
+          <span class="post-subreddit-name">
+            <a routerLink="{{ singlePost.subredditName }}">{{
+              singlePost.subredditName
+            }}</a>
+          </span>
+          <span class="dot">.</span>
+          <span class="post-created-by"
+            >Posted by u/
+            <a routerLink="{{ singlePost.userName }}">{{
+              singlePost.userName
+            }}</a>
+          </span>
+          <span class="dot">.</span>
+          <span class="post-duration">{{ singlePost.duration }}</span>
+        </div>
+      </div>
+      <div class="post-title">
+        <h4 *ngIf="singlePost.postName">
+          {{ singlePost.postName }}
+        </h4>
+
+        <div class="media">
+          <!--   <iframe
+            width="560"
+            height="315"
+            src=""
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          ></iframe> -->
+          <p class="post-desc" *ngIf="singlePost.postDescription">
+            {{ singlePost.postDescription }}
+            <a href="{{ singlePost.url }}" target="_blank">{{
+              singlePost.url
+            }}</a>
+          </p>
+        </div>
+      </div>
+      <div class="comment-view">
+        <button>
+          <fa-icon [icon]="faMessage"> </fa-icon>
+          Comment ({{ singlePost.commentCount }})
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -39,12 +39,12 @@ export class MyTokenInterceptor implements HttpInterceptor {
     }
     const jwtToken = this._authService.getJwtTokenFromLocalStorage();
     if (jwtToken) {
-      console.log('jwt ', req);
+      // console.log('jwt ', req);
       this.setTokenHeaderInReqMody = this.addTokenInHeader(req, jwtToken);
     }
     return next.handle(this.setTokenHeaderInReqMody).pipe(
       catchError((err) => {
-        console.log('refresh ', req);
+        // console.log('refresh ', req);
         if (err instanceof HttpErrorResponse && err.status === 403) {
           return this.handle403Errors(req, next);
         } else {
@@ -59,7 +59,6 @@ export class MyTokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     if (!this.isTokenRefershing) {
-      console.log('inhere');
       this.isTokenRefershing = true;
       this.refershTokenBehaviourSubject.next(null);
       return this._authService.getRefreshTokenfromLocalStorage().pipe(

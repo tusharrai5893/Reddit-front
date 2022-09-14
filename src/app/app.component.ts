@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Notyf } from 'notyf';
 
 @Component({
   selector: 'app-root',

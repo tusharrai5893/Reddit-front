@@ -2,11 +2,13 @@ import { AuthenticationComponent } from './auth/authentication/authentication.co
 import { FeedComponent } from './feed/feed.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NewPostComponent } from './new-post/new-post.component';
 
 export const routes: Routes = [
-  { path: '', component: AuthenticationComponent },
+  { path: 'auth', component: AuthenticationComponent },
   { path: 'feed', component: FeedComponent, pathMatch: 'full' },
-  { path: 'auth', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: 'new-post', component: NewPostComponent },
 ];
 
 @NgModule({

@@ -1,16 +1,12 @@
+import { NOTYF } from './../../notification';
 import { LocalStorageService } from 'ngx-webstorage';
 import { AuthService } from './../shared/auth.service';
-import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SignInReqPayload } from './requestPayload/reqSignInPayload';
 import { SignUpReqPayload } from './requestPayload/reqSignUpPayload';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { Notyf } from 'notyf';
 
 @Component({
   selector: 'app-authentication',
@@ -28,8 +24,8 @@ export class AuthenticationComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private toastr: ToastrService,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    @Inject(NOTYF) private notification: Notyf
   ) {
     this.initSigInPayload(this.signInForm);
     this.initSignUpPayload(this.signUpForm);
@@ -58,21 +54,21 @@ export class AuthenticationComponent implements OnInit {
     this.authService.signInService(this.signInReqPayload).subscribe(
       (data) => {
         if (data) {
-          this.toastr.success('Logged In, Yayy');
+          this.notification.success('Logged In, Yayy');
           this.router.navigate(['feed']);
         } else {
-          this.toastr.error('Wrong Credentials, Retry Again');
+          this.notification.error('Wrong Credentials, Retry Again');
         }
       },
       (error) => {
         document.querySelector('#signIn')?.classList.add('is-disabled');
+        this.notification.error(`Uhh Ohh, Try Again Later 🙏🏼`);
         setTimeout(() => {
           document.querySelector('#signIn')?.classList.remove('is-disabled');
         }, 1000);
-        this.toastr.error(`Uhh Ohh, Try Again Later 🙏🏼`);
       }
     );
-    this.toastr.clear();
+    this.notification.dismissAll();
   }
   //TODO: signUp functionality
   doSignUp() {
@@ -81,34 +77,24 @@ export class AuthenticationComponent implements OnInit {
       (next) => {
         console.log('success');
 
-        this.toastr.success('Welcome To Our Community', '', {
-          closeButton: true,
-          easeTime: 300,
+        this.notification.success('Welcome To Our Community');
+        this.notification.open({
+          type: 'warning',
+          message: 'Activation Email Has been sent to your Mail',
         });
-        this.toastr.info(
-          'Activation Email Has been sent to your Mail',
-          'Activation Notification',
-          {
-            closeButton: true,
-            easeTime: 2000,
-          }
-        );
         this.goAheadSignin();
       },
       (error) => {
-        console.log('failed');
+        console.log(`failed ${error.status}`);
         document.querySelector('#signUp')?.classList.add('is-disabled');
         setTimeout(() => {
           document.querySelector('#signUp')?.classList.remove('is-disabled');
         }, 100);
-        this.toastr.error('Sign Up failed! Please Try Again', '', {
-          closeButton: true,
-          easeTime: 300,
-        });
+        this.notification.error('Sign Up failed! Please Try Again');
       }
     );
 
-    this.toastr.clear();
+    this.notification.dismissAll();
   }
 
   getSignInDataFromDOM(): FormGroup {

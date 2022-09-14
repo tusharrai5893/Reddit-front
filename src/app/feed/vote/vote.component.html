@@ -1,0 +1,19 @@
+<div class="vote-container">
+  <fa-icon
+    class="up"
+    (click)="voteUp()"
+    [icon]="faSquareCaretUp"
+    title="Up Vote"
+  ></fa-icon>
+
+  <div class="vote-count">
+    {{ voteCount > 0 ? voteCount : voteCount < 0 ? voteCount : "Vote" }}
+  </div>
+
+  <fa-icon
+    class="down"
+    (click)="voteDown()"
+    [icon]="faSquareCaretDown"
+    title="Down Vote"
+  ></fa-icon>
+</div>

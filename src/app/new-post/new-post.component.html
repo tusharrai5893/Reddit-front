@@ -1,0 +1,32 @@
+<div class="editor">
+  <div class="header-create-post">
+    <h3>Create a Post</h3>
+  </div>
+  <hr />
+  <div class="community-dropdown">
+    <select class="select-items">
+      <option value="Choose a community">Choose a community</option>
+      <option value="2">BMW</option>
+      <option value="2">BMW</option>
+      <option value="2">BMW</option>
+    </select>
+  </div>
+  <form class="form-box">
+    <div>
+      <div class="post-title-control">
+        <input type="text" placeholder="Title" />
+      </div>
+      <quill-editor
+        [style]="{ height: '200px' }"
+        [modules]="config"
+        (onBlur)="changedEditor($event)"
+        [required]="true"
+        placeholder="Text"
+      ></quill-editor>
+    </div>
+    <div class="submit-post">
+      <input type="submit" value="Post" (click)="changedEditorr($event)" />
+      <input type="reset" value="Reset" />
+    </div>
+  </form>
+</div>

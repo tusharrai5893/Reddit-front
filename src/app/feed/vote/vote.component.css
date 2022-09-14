@@ -1,0 +1,31 @@
+.vote-container {
+  position: relative;
+  flex-direction: column;
+  border-right: 1px solid #ccc;
+  height: 100%;
+}
+.vote-container,
+.vote-count > fa-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3px 3px 0 3px;
+}
+
+.vote-container > fa-icon {
+  margin: 0.25rem 0.25rem;
+  outline: none;
+  cursor: pointer;
+  border: none;
+}
+.vote-count {
+  font-size: 0.95rem;
+}
+.up:hover {
+  cursor: pointer;
+  color: red;
+}
+.down:hover {
+  cursor: pointer;
+  color: rgb(79, 233, 8);
+}

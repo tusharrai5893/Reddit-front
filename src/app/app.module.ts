@@ -1,9 +1,9 @@
+import { QuillModule } from 'ngx-quill';
 import { MyTokenInterceptor } from './token-interceptor.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { ToastrModule } from 'ngx-toastr';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -13,6 +13,12 @@ import { AuthenticationComponent } from './auth/authentication/authentication.co
 import { FeedComponent } from './feed/feed.component';
 import { HeaderComponent } from './header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { VoteComponent } from './feed/vote/vote.component';
+import { PostViewComponent } from './feed/post-view/post-view.component';
+import { FamousCommunityComponent } from './community-sidebar-right/famous-community.component';
+import { NOTYF, notyfFactory } from './notification';
+import { ViewCommunitySubredditComponent } from './community-sidebar-right/view-community-subreddit/view-community-subreddit.component';
+import { NewPostComponent } from './new-post/new-post.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +26,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AuthenticationComponent,
     FeedComponent,
     HeaderComponent,
+    VoteComponent,
+    PostViewComponent,
+    FamousCommunityComponent,
+    ViewCommunitySubredditComponent,
+    NewPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,11 +39,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     NgxWebstorageModule.forRoot(),
     BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: true,
-    }),
     FontAwesomeModule,
+    QuillModule.forRoot(),
   ],
   providers: [
     {
@@ -40,6 +48,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
       useClass: MyTokenInterceptor,
       multi: true,
     },
+    { provide: NOTYF, useFactory: notyfFactory },
   ],
   bootstrap: [AppComponent],
 })

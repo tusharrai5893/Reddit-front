@@ -1,0 +1,121 @@
+.middle-container {
+  background-color: #fff;
+}
+.middle-container:nth-last-child(n) {
+  margin-bottom: 10px;
+}
+.middle-container:hover {
+  border: 0.5px solid black;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.post-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+}
+.post-msg-view {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.post-msg-view > .post-user-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 5px;
+  flex-basis: 10%;
+  color: #636363;
+}
+.post-user-info > .dot {
+  color: black;
+  font-size: 25px;
+  margin: 0 5px;
+  line-height: 2px;
+}
+.post-user-info > span > a {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  color: black;
+}
+.post-user-info > span > a:hover {
+  color: rgba(181, 49, 49, 0.828);
+  font-weight: bolder;
+}
+
+.post-msg-view > .post-title {
+  font-size: 1.5em;
+
+  flex-basis: 10%;
+  margin: 3px 5px;
+  text-align: start;
+  width: 100%;
+  border-top: 1px solid #ccc;
+}
+.post-msg-view > .post-desc {
+  padding: 1px 5px;
+  flex-basis: 70%;
+  margin: 3px 5px;
+  text-align: start;
+  width: 100%;
+  outline: none;
+}
+.comment-view {
+  flex-basis: 10%;
+  margin: 1px 5px;
+  border-top: 1px solid #ccc;
+}
+.comment-view > fa-icon {
+  margin: 0 3px;
+}
+.comment-view > button {
+  margin: 3px 0;
+  padding: 8px 8px;
+  outline: none;
+  cursor: pointer;
+  border: none;
+}
+.comment-view > button:hover {
+  background-color: black;
+  color: white;
+}
+.user-profile > img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border: 2px solid #4ef059;
+}
+@media screen and (max-width: 977px) {
+  .post-user-info {
+    font-size: 0.9rem;
+  }
+  .left-container,
+  .right-container {
+    display: none;
+  }
+  .feed {
+    flex: 100%;
+    height: 100vh;
+    margin: 8% 1% 50px 1%;
+  }
+}
+
+@media (max-width: 390px) or (max-width: 375px) or (max-width: 393px) or (max-width: 414px) {
+  .post-user-info {
+    font-size: 0.7rem;
+  }
+  .left-container,
+  .right-container {
+    display: none;
+  }
+  .left-container {
+    padding: 10px;
+  }
+  .feed {
+    height: 100vh;
+    margin: 17% 1% 50px 1%;
+  }
+}

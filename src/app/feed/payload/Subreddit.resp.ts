@@ -1,4 +1,4 @@
-import { PostDTO } from './noOfPosts';
+import { PostDTO } from './post.dto';
 export interface SubredditResponse {
   subredditId: number;
   subredditName: string;

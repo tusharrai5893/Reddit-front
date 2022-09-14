@@ -1,15 +1,4 @@
-import { PostDTO } from './payload/noOfPosts';
-import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { SubredditResponse } from './payload/Subreddit.resp';
-import { finalize, Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
-import {
-  faMessage,
-  faSquareCaretDown,
-  faSquareCaretUp,
-} from '@fortawesome/free-solid-svg-icons';
-import { AuthService } from '../auth/shared/auth.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-feed',
@@ -17,22 +6,11 @@ import { AuthService } from '../auth/shared/auth.service';
   styleUrls: ['./feed.component.css'],
 })
 export class FeedComponent implements OnInit {
-  faSquareCaretUp = faSquareCaretUp;
-  faSquareCaretDown = faSquareCaretDown;
-  faMessage = faMessage;
-
-  allSubReddit!: Array<SubredditResponse>;
-  post!: PostDTO[];
-  constructor(private _authService: AuthService, private _http: HttpClient) {}
+  @ViewChild('isPostThere') isPostThere!: boolean;
+  constructor() {}
 
   ngOnInit(): void {
-    this.getAllSubredditFromService();
+    // typeof this.isPostThere == undefined ? false : true;
+    // console.log(this.isPostThere);
   }
-  getAllSubredditFromService() {
-    this._authService.getAllPosts().subscribe((res) => {
-      console.log(res);
-
-      this.post = res;
-    });
-  }
-}
+} //feed ends
