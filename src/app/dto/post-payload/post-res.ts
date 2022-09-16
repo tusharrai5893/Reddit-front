@@ -1,4 +1,4 @@
-export interface PostDTO {
+export interface PostResponsePayload {
   postId: number;
   postName: string;
   url: string;

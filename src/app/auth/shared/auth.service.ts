@@ -1,11 +1,12 @@
-import { SignUpReqPayload } from './../authentication/requestPayload/reqSignUpPayload';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
-import { SignInReqPayload } from '../authentication/requestPayload/reqSignInPayload';
-import { ResSignInPayload } from '../authentication/requestPayload/resSignInPayload';
+
+import { ResSignInPayload } from '../../dto/auth-payload/resSignInPayload';
 import { LocalStorageService } from 'ngx-webstorage';
 import { environment } from 'src/environments/environment';
+import { SignInReqPayload } from 'src/app/dto/auth-payload/reqSignInPayload';
+import { SignUpReqPayload } from 'src/app/dto/auth-payload/reqSignUpPayload';
 
 @Injectable({
   providedIn: 'root',

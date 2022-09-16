@@ -14,11 +14,10 @@
 }
 /*=============== MODERN INPUT ===============*/
 .center {
-  display: flex;
-  min-height: 100vh;
-  position: relative;
-  align-items: center;
-  justify-content: center;
+  background-color: aqua;
+  position: fixed;
+  top: 27%;
+  left: 38%;
 }
 
 .auth-form {

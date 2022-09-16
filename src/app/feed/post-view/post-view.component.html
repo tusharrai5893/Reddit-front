@@ -29,23 +29,12 @@
         <h4 *ngIf="singlePost.postName">
           {{ singlePost.postName }}
         </h4>
-
-        <div class="media">
-          <!--   <iframe
-            width="560"
-            height="315"
-            src=""
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          ></iframe> -->
-          <p class="post-desc" *ngIf="singlePost.postDescription">
-            {{ singlePost.postDescription }}
-            <a href="{{ singlePost.url }}" target="_blank">{{
-              singlePost.url
-            }}</a>
-          </p>
-        </div>
+        <p
+          class="post-desc"
+          *ngIf="singlePost.postDescription"
+          [innerHTML]="singlePost.postDescription"
+        ></p>
+        <!-- <p routerLink="singlePost.url" [innerHTML]="singlePost.url"></p> -->
       </div>
       <div class="comment-view">
         <button>

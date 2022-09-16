@@ -15,10 +15,15 @@
   <div class="feed">
     <!-- post-view-placeholder -->
     <app-post-view></app-post-view>
-
-    <div class="load-more" *ngIf="isPostThere">
-      <button>hmm, no post yet,Pls Login</button>
+    <!-- *ngIf="!isLoggedIn" -->
+    <div class="load-more" *ngIf="isloggedIn; else notloggedIn">
+      Hmm, No post yet
     </div>
+    <ng-template #notloggedIn
+      ><a routerLink="/auth" class="load-more"
+        >Are you logged in? Click here
+      </a></ng-template
+    >
   </div>
 
   <!-- right -->

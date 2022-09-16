@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  faSquareCaretDown, faSquareCaretUp
+  faSquareCaretDown,
+  faSquareCaretUp,
 } from '@fortawesome/free-solid-svg-icons';
-import { PostDTO } from '../payload/post.dto';
+import { PostResponsePayload } from '../../dto/post-payload/post-res';
 
 @Component({
   selector: 'app-vote',
@@ -12,7 +13,7 @@ import { PostDTO } from '../payload/post.dto';
 export class VoteComponent implements OnInit {
   faSquareCaretUp = faSquareCaretUp;
   faSquareCaretDown = faSquareCaretDown;
-  @Input() postToVoteView!: PostDTO;
+  @Input() postToVoteView!: PostResponsePayload;
   voteCount!: number;
   constructor() {}
 

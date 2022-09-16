@@ -1,4 +1,4 @@
-import { ResSignInPayload } from './auth/authentication/requestPayload/resSignInPayload';
+import { ResSignInPayload } from './dto/auth-payload/resSignInPayload';
 import { AuthService } from './auth/shared/auth.service';
 import {
   HttpErrorResponse,

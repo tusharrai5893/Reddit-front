@@ -19,6 +19,7 @@ import { FamousCommunityComponent } from './community-sidebar-right/famous-commu
 import { NOTYF, notyfFactory } from './notification';
 import { ViewCommunitySubredditComponent } from './community-sidebar-right/view-community-subreddit/view-community-subreddit.component';
 import { NewPostComponent } from './new-post/new-post.component';
+import { SubredditComponent } from './create-subreddit/subreddit.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NewPostComponent } from './new-post/new-post.component';
     FamousCommunityComponent,
     ViewCommunitySubredditComponent,
     NewPostComponent,
+    SubredditComponent,
   ],
   imports: [
     BrowserModule,

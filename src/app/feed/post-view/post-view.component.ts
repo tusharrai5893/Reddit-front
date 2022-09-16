@@ -1,8 +1,13 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  AfterViewInit,
+} from '@angular/core';
+import { PostResponsePayload } from './../../dto/post-payload/post-res';
 
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
-import { PostDTO } from '../payload/post.dto';
-import { SubredditResponse } from '../payload/subreddit.resp';
 import { SharedPostServices } from './shared/shared-post-services.service';
 
 @Component({
@@ -10,23 +15,22 @@ import { SharedPostServices } from './shared/shared-post-services.service';
   templateUrl: './post-view.component.html',
   styleUrls: ['./post-view.component.css'],
 })
-export class PostViewComponent implements OnInit {
+export class PostViewComponent implements OnInit, AfterViewInit {
   faMessage = faMessage;
+  post = new Array<PostResponsePayload>();
 
-  allSubReddit!: Array<SubredditResponse>;
-  post!: PostDTO[];
-
-  @Output() isPostThere: EventEmitter<boolean> = new EventEmitter();
+  @Output() isPostThere: EventEmitter<number> = new EventEmitter();
 
   constructor(private _postServc: SharedPostServices) {}
-
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.getAllPostsFromService();
+    this.isPostThere.emit(this.post.length == 0 ? 0 : -1);
   }
+
+  ngOnInit(): void {}
   getAllPostsFromService() {
     this._postServc.getAllPosts().subscribe((res) => {
       this.post = res;
-      this.isPostThere.emit(res.length > 0);
     });
   }
 }

@@ -3,7 +3,7 @@
   left: 15rem;
   padding: 1rem;
   position: absolute;
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   -webkit-font-smoothing: antialiased;
 }
 .community-dropdown {
@@ -69,4 +69,27 @@ hr {
 
 .submit-post > input:hover {
   border: 1px dashed blueviolet;
+}
+
+/* ------------- animation */
+
+.is-invalid {
+  color: rgb(200, 67, 67);
+  display: block;
+}
+
+.is-disabled {
+  animation: shake 300ms;
+}
+
+@keyframes shake {
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
 }

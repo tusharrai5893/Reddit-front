@@ -1,5 +1,5 @@
 <div class="sidebar-subreddit-home-screen">
-  <div class="create-post-community">
+  <div class="create-post-community" *ngIf="isloggedIn">
     <div class="banner-home-create-community">
       <div class="banner-home-img"></div>
       <div class="home">
@@ -14,19 +14,16 @@
       </div>
     </div>
     <div class="create-post">
-      <button
-        role="button"
-        tabindex="0"
-        routerLink="/new-post"
-        id="create-post-button"
-      >
+      <button (click)="goToCreatePost()" id="create-post-button">
         Create Post
       </button>
-      <button role="button" tabindex="0" id="create-community-button">
+      <button (click)="goToCreateSubreddit()" id="create-community-button">
         Create Community
       </button>
     </div>
   </div>
+
+  <app-view-community></app-view-community>
 
   <div class="bottom-footer-side">
     <div class="company-name">Reddit Inc © 2022. All rights reserved</div>

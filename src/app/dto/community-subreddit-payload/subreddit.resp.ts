@@ -1,7 +1,7 @@
-import { PostDTO } from './post.dto';
+import { PostResponsePayload } from './../post-payload/post-res';
 export interface SubredditResponse {
   subredditId: number;
   subredditName: string;
   subredditDescription: string;
-  noOfPosts: Array<PostDTO>;
+  noOfPosts: Array<PostResponsePayload>;
 }

@@ -1,12 +1,13 @@
-import { NOTYF } from './../../notification';
-import { LocalStorageService } from 'ngx-webstorage';
-import { AuthService } from './../shared/auth.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SignInReqPayload } from './requestPayload/reqSignInPayload';
-import { SignUpReqPayload } from './requestPayload/reqSignUpPayload';
+import { LocalStorageService } from 'ngx-webstorage';
+import { NOTYF } from './../../notification';
+import { AuthService } from './../shared/auth.service';
+
 import { Router } from '@angular/router';
 import { Notyf } from 'notyf';
+import { SignInReqPayload } from 'src/app/dto/auth-payload/reqSignInPayload';
+import { SignUpReqPayload } from 'src/app/dto/auth-payload/reqSignUpPayload';
 
 @Component({
   selector: 'app-authentication',
@@ -15,6 +16,7 @@ import { Notyf } from 'notyf';
 })
 export class AuthenticationComponent implements OnInit {
   hidden: boolean = true;
+  isloggedIn!: boolean;
   signInReqPayload!: SignInReqPayload;
   SignUpReqPayload!: SignUpReqPayload;
   signInForm!: FormGroup;
@@ -35,6 +37,9 @@ export class AuthenticationComponent implements OnInit {
     this.localStorage.clear();
     this.signInForm = this.getSignInDataFromDOM();
     this.signUpForm = this.getSignUpDataFromDOM();
+    this.authService.getJwtTokenFromLocalStorage() == null
+      ? (this.isloggedIn = false)
+      : (this.isloggedIn = true);
   }
 
   areYouOneOfUs() {
@@ -62,7 +67,7 @@ export class AuthenticationComponent implements OnInit {
       },
       (error) => {
         document.querySelector('#signIn')?.classList.add('is-disabled');
-        this.notification.error(`Uhh Ohh, Try Again Later 🙏🏼`);
+        this.notification.error(`Are you registered, with us ?`);
         setTimeout(() => {
           document.querySelector('#signIn')?.classList.remove('is-disabled');
         }, 1000);
