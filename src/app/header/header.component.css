@@ -6,10 +6,11 @@ nav {
   background: white;
   flex-direction: row;
   width: 100vw;
+  height: 3rem;
   display: flex;
-  z-index: 100;
+  z-index: 1000;
   position: fixed;
-  top: 1px;
+  top: 0.1px;
 }
 .reddit-icon {
   display: flex;
@@ -42,12 +43,10 @@ nav {
   width: 50px;
 }
 .icon {
-  height: 50px;
-  width: auto;
+  height: 48px;
   margin: 1px;
-  padding: 7px;
+  padding: 8px;
   position: relative;
-  filter: drop-shadow(0 0 0.3em crimson);
 }
 /* search-box-css */
 .search-input {

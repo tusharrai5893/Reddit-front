@@ -3,12 +3,7 @@
     <h3>Create a Post</h3>
   </div>
   <hr />
-  <form
-    id="editor"
-    novalidate
-    [formGroup]="createPostGp"
-    (ngSubmit)="createPost()"
-  >
+  <form id="editor" novalidate [formGroup]="createPostGp">
     <div class="community-dropdown">
       <span
         hidden
@@ -20,59 +15,65 @@
             !createPostGp.get('subredditName')?.valid
         }"
       >
-        Choose a community
+        Community is required
       </span>
 
       <select class="select-items" formControlName="subredditName">
-        <option selected *ngIf="communityList">Choose a community</option>
-
         <option
           value="{{ subreddit.subredditName }}"
-          *ngFor="let subreddit of communityList"
+          *ngFor="let subreddit of communityList$"
         >
           {{ subreddit.subredditName }}
         </option>
       </select>
     </div>
     <div class="form-box">
-      <div>
-        <div class="post-title-control">
-          <span
-            hidden
-            [ngClass]="{
-              'is-invalid':
-                (createPostGp.get('postName')?.touched ||
-                  createPostGp.get('postName')?.dirty) &&
-                !createPostGp.get('postName')?.valid
-            }"
-            >Title is required</span
-          >
-          <input type="text" placeholder="Title" formControlName="postName" />
-        </div>
+      <div class="post-title-control">
         <span
-          style="margin: 5px 0"
           hidden
           [ngClass]="{
             'is-invalid':
-              (createPostGp.get('postDescription')?.touched ||
-                createPostGp.get('postDescription')?.dirty) &&
-              !createPostGp.get('postDescription')?.valid
+              (createPostGp.get('postName')?.touched ||
+                createPostGp.get('postName')?.dirty) &&
+              !createPostGp.get('postName')?.valid
           }"
-          >Post description is required</span
+          >Title is required</span
         >
-        <quill-editor
-          formControlName="postDescription"
-          [style]="{ height: '200px' }"
-          [modules]="config"
-          (onContentChanged)="onContentChanged($event)"
-          [required]="true"
-          placeholder="Text"
-        ></quill-editor>
+        <input type="text" placeholder="Title" formControlName="postName" />
       </div>
+      <span
+        style="margin: 5px 0"
+        hidden
+        [ngClass]="{
+          'is-invalid':
+            (createPostGp.get('postDescription')?.touched ||
+              createPostGp.get('postDescription')?.dirty) &&
+            !createPostGp.get('postDescription')?.valid
+        }"
+        >Post description is required</span
+      >
+      <quill-editor
+        formControlName="postDescription"
+        [style]="{ height: '240px' }"
+        [modules]="config"
+        (onContentChanged)="onContentChanged($event)"
+        [required]="true"
+        placeholder="Text"
+      ></quill-editor>
       <div class="submit-post">
-        <input type="submit" value="Post" [disabled]="!createPostGp.valid" />
-        <input type="reset" value="Cancel" (click)="goBackToFeed()" />
+        <app-button
+          [btnLabel]="btnlabelPost"
+          (btnFuncClick)="createPost($event)"
+          [customDisable]="!this.createPostGp.valid"
+        ></app-button>
+        <app-button
+          [btnLabel]="btnlabelDiscard"
+          (btnFuncClick)="goBackToFeed()"
+        ></app-button>
       </div>
     </div>
   </form>
 </div>
+
+<!-- <input type="submit" value="Post" [disabled]="!createPostGp.valid" /> -->
+<!-- <input type="reset" value="Cancel" (click)="goBackToFeed()" /> -->

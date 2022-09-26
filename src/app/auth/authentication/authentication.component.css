@@ -14,14 +14,15 @@
 }
 /*=============== MODERN INPUT ===============*/
 .center {
-  background-color: aqua;
-  position: fixed;
-  top: 27%;
-  left: 38%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .auth-form {
-  position: absolute;
+  margin-top: 15%;
+  position: relative;
   background-color: var(--white-color);
   padding: 20px 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);

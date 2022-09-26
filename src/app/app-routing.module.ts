@@ -8,9 +8,13 @@ import { NewPostComponent } from './new-post/new-post.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: 'auth', component: AuthenticationComponent },
-  { path: 'feed', component: FeedComponent, pathMatch: 'full' },
+  {
+    path: 'feed',
+    component: FeedComponent,
+    children: [{ path: 'new-community', component: SubredditComponent }],
+  },
   { path: ':feed/new-post', component: NewPostComponent },
-  { path: 'new-community', component: SubredditComponent },
+  // { path: 'new-community', component: SubredditComponent },
 ];
 
 @NgModule({

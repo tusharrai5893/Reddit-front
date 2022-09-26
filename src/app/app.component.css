@@ -1,4 +1,7 @@
-.router-outlet {
+.nav-outlet {
   position: relative;
-  top: 54px;
+  margin-bottom: 52px;
+  height: 100%;
+  width: 100%;
+  background-color: blue;
 }

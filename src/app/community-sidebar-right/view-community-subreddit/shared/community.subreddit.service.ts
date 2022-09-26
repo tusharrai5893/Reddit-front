@@ -1,8 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { SubredditResponse } from './../../../dto/community-subreddit-payload/subreddit.resp';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/auth/shared/auth.service';
-import { SubredditResponse } from 'src/app/dto/community-subreddit-payload/subreddit.resp';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,10 +10,10 @@ import { environment } from 'src/environments/environment';
 export class CommunitySubredditService {
   BASE_URL = environment.base_url;
 
-  constructor(private _http: HttpClient, private auth: AuthService) {}
+  constructor(private _http: HttpClient) {}
 
-  getAllSubreddit(): Observable<any> {
-    return this._http.get<any>(
+  getAllSubreddit(): Observable<SubredditResponse> {
+    return this._http.get<SubredditResponse>(
       `${this.BASE_URL}${'subreddit/fetchAll-subreddit'}`
     );
   }

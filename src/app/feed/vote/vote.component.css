@@ -1,7 +1,7 @@
 .vote-container {
   position: relative;
   flex-direction: column;
-  border-right: 1px solid #ccc;
+  border-right: 0.1px solid #ccc;
   height: 100%;
 }
 .vote-container,
@@ -19,7 +19,7 @@
   border: none;
 }
 .vote-count {
-  font-size: 0.95rem;
+  font-size: auto;
 }
 .up:hover {
   cursor: pointer;

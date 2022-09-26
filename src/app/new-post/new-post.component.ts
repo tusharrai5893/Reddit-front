@@ -1,14 +1,14 @@
-import { SubredditResponse } from './../dto/community-subreddit-payload/subreddit.resp';
-import { CommunitySubredditService } from './../community-sidebar-right/view-community-subreddit/shared/community.subreddit.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Blur, EditorChangeContent, EditorChangeSelection } from 'ngx-quill';
 import { Notyf } from 'notyf';
+import { map, Observable } from 'rxjs';
 import { NOTYF } from '../notification';
+import { CommunitySubredditService } from './../community-sidebar-right/view-community-subreddit/shared/community.subreddit.service';
+import { SubredditResponse } from './../dto/community-subreddit-payload/subreddit.resp';
 import { PostRequestPayload } from './../dto/post-payload/post-req';
 import { NewPostService } from './shared/new.post.service';
-import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-new-post',
@@ -20,16 +20,12 @@ export class NewPostComponent implements OnInit {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'], // toggled buttons
       ['blockquote', 'code-block'],
-
       [{ list: 'ordered' }, { list: 'bullet' }],
-
       [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
       [{ font: [] }],
       [{ align: [] }],
-
-      ['link', 'image', 'video'], // link and image, video
+      // ['link', 'image', 'video'], // link and image, video
     ],
   };
 
@@ -38,7 +34,9 @@ export class NewPostComponent implements OnInit {
   createPostGp!: FormGroup;
   postReqPayload!: PostRequestPayload;
 
-  communityList!: SubredditResponse[];
+  communityList$ = new Array<SubredditResponse>();
+  btnlabelPost = 'Post';
+  btnlabelDiscard = 'Discard';
 
   constructor(
     private router: Router,
@@ -46,10 +44,27 @@ export class NewPostComponent implements OnInit {
     private postServc: NewPostService,
     @Inject(NOTYF) private notification: Notyf,
     private subreddit: CommunitySubredditService
-  ) {}
+  ) {
+    this.createPostGp = this.getFieldDataFromDOM();
+  }
+  ngOnInit(): void {
+    this.fetchAllCommunityName();
+  }
+
+  fetchAllCommunityName() {
+    this.subreddit.getAllSubreddit().subscribe((data) => {
+      Object.assign(this.communityList$, data);
+
+      // this.communityList$.forEach((d) => {
+      //   d.subredditName.startsWith('r/') == false
+      //     ? (d.subredditName = 'r/' + d.subredditName)
+      //     : d.subredditName;
+      // });
+    });
+  }
 
   // getting values from post form and creating object using post dto
-  initCreatePostPayload(createPostGp: FormGroup): PostRequestPayload {
+  initCreatePostPayloadToAPI(createPostGp: FormGroup): PostRequestPayload {
     return (this.postReqPayload = {
       postName: createPostGp?.value.postName,
       postDescription: createPostGp?.value.postDescription,
@@ -58,19 +73,7 @@ export class NewPostComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.createPostGp = this.getCreatePostPayloadFromDOM();
-    this.subreddit.getAllSubreddit().subscribe(
-      (data) => {
-        this.communityList = data;
-      },
-      (error) => {
-        throwError(error);
-      }
-    );
-  }
-
-  getCreatePostPayloadFromDOM(): FormGroup {
+  getFieldDataFromDOM(): FormGroup {
     return this.fb.group({
       postName: ['', [Validators.required]],
       postDescription: ['', [Validators.required]],
@@ -89,7 +92,6 @@ export class NewPostComponent implements OnInit {
         if (htmlArr[i]['innerHTML'].match('<a href')) {
           let child = htmlArr[i]['innerHTML'];
           console.log(htmlArr[i]);
-
           this.urlArr.push(child);
           break;
         }
@@ -97,8 +99,8 @@ export class NewPostComponent implements OnInit {
     }
   }
 
-  createPost() {
-    this.postReqPayload = this.initCreatePostPayload(this.createPostGp);
+  createPost(event: any) {
+    this.postReqPayload = this.initCreatePostPayloadToAPI(this.createPostGp);
     this.postServc.createNewPost(this.postReqPayload).subscribe(
       (data) => {
         if (data) {
@@ -110,7 +112,10 @@ export class NewPostComponent implements OnInit {
       },
       (error) => {
         document.querySelector('#editor')?.classList.add('is-disabled');
-        this.notification.error(`You have to log in to post`);
+        if (error.status === 500) {
+          this.notification.error(`Community choosen is invalid`);
+          console.log(error);
+        }
         setTimeout(() => {
           document.querySelector('#editor')?.classList.remove('is-disabled');
         }, 1000);

@@ -1,0 +1,28 @@
+.form-button {
+  justify-self: flex-end;
+  background-color: var(--black-color);
+}
+
+.form-submit-input {
+  border: 0;
+  outline: none;
+  font-size: var(--normal-font-size);
+  padding: 10px 10px;
+  color: black;
+  background-color: white;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.3s;
+}
+
+.form-submit-input:hover {
+  transform: translate(-6px, -6px);
+  transition: transform 0.3s;
+  background-color: rgb(67, 125, 157);
+  color: white;
+  border: 0.4px solid black;
+}
+.form-submit-input:disabled {
+  filter: grayscale(2);
+  cursor: not-allowed;
+}

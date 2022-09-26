@@ -20,6 +20,7 @@ import { NOTYF, notyfFactory } from './notification';
 import { ViewCommunitySubredditComponent } from './community-sidebar-right/view-community-subreddit/view-community-subreddit.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { SubredditComponent } from './create-subreddit/subreddit.component';
+import { ButtonComponent } from './util/button/button.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SubredditComponent } from './create-subreddit/subreddit.component';
     ViewCommunitySubredditComponent,
     NewPostComponent,
     SubredditComponent,
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,

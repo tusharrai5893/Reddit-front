@@ -2,22 +2,23 @@
   background-color: #fff;
 }
 .middle-container:nth-last-child(n) {
-  margin-bottom: 10px;
+  margin-bottom: 0.4rem;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 }
 .middle-container:hover {
   border: 0.5px solid black;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 }
-
-.post-container {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  height: auto;
+.post-desc {
+  padding: 0 2px;
 }
+.post-container {
+  display: flex;
+}
+
 .post-msg-view {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -37,36 +38,31 @@
 }
 .post-user-info > span > a {
   text-decoration: none;
-  margin: 0;
-  padding: 0;
-  color: black;
+  color: rgb(127, 123, 123);
 }
 .post-user-info > span > a:hover {
   color: rgba(181, 49, 49, 0.828);
-  font-weight: bolder;
+  font-weight: bold;
 }
-
-.post-msg-view > .post-title {
-  font-size: 1.5em;
-
+.post-subreddit-name {
+  font-size: 12px;
+}
+.post-created-by {
+  margin-trim: none;
+  color: black;
+}
+.post-title {
   flex-basis: 10%;
   margin: 3px 5px;
-  text-align: start;
-  width: 100%;
-  border-top: 1px solid #ccc;
+  text-align: justify;
+  max-width: 100%;
+  border-top: 0.1px solid #ccc;
 }
-.post-msg-view > .post-desc {
-  padding: 1px 5px;
-  flex-basis: 70%;
-  margin: 3px 5px;
-  text-align: start;
-  width: 100%;
-  outline: none;
-}
+
 .comment-view {
   flex-basis: 10%;
   margin: 1px 5px;
-  border-top: 1px solid #ccc;
+  border-top: 0.1px solid #ccc;
 }
 .comment-view > fa-icon {
   margin: 0 3px;
@@ -83,14 +79,14 @@
   color: white;
 }
 .user-profile > img {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
-  border: 2px solid #4ef059;
+  border: 1px solid #4ef059;
 }
 @media screen and (max-width: 977px) {
   .post-user-info {
-    font-size: 0.9rem;
+    font-size: inherit;
   }
   .left-container,
   .right-container {

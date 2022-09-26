@@ -1,10 +1,5 @@
-import {
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-  AfterViewInit,
-} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { throwError } from 'rxjs';
 import { PostResponsePayload } from './../../dto/post-payload/post-res';
 
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
@@ -15,22 +10,25 @@ import { SharedPostServices } from './shared/shared-post-services.service';
   templateUrl: './post-view.component.html',
   styleUrls: ['./post-view.component.css'],
 })
-export class PostViewComponent implements OnInit, AfterViewInit {
+export class PostViewComponent implements OnInit {
   faMessage = faMessage;
   post = new Array<PostResponsePayload>();
 
-  @Output() isPostThere: EventEmitter<number> = new EventEmitter();
+  @Output() isPostThere: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private _postServc: SharedPostServices) {}
-  ngAfterViewInit(): void {
-    this.getAllPostsFromService();
-    this.isPostThere.emit(this.post.length == 0 ? 0 : -1);
-  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllPostsFromService();
+  }
   getAllPostsFromService() {
-    this._postServc.getAllPosts().subscribe((res) => {
-      this.post = res;
+    this._postServc.getAllPosts().subscribe({
+      next: (v) => {
+        Object.assign(this.post, v);
+        this.isPostThere.emit(this.post);
+      },
+      error: (e) => throwError((e: any) => new Error(e)),
+      complete: () => console.info(),
     });
   }
 }

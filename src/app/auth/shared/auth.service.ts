@@ -12,7 +12,7 @@ import { SignUpReqPayload } from 'src/app/dto/auth-payload/reqSignUpPayload';
   providedIn: 'root',
 })
 export class AuthService {
-  private BASE_URL = environment.base_url;
+  BASE_URL = environment.base_url;
 
   constructor(
     private _http: HttpClient,

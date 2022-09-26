@@ -1,5 +1,5 @@
 import { LocalStorageService } from 'ngx-webstorage';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AuthenticationComponent } from '../auth/authentication/authentication.component';
 
 @Component({
@@ -9,15 +9,17 @@ import { AuthenticationComponent } from '../auth/authentication/authentication.c
 })
 export class FeedComponent implements OnInit {
   isloggedIn!: boolean;
-  isPostThere!: number;
   authComponent!: AuthenticationComponent;
+  isPostFromPostViewChildLength!: number;
   constructor(private localStorage: LocalStorageService) {}
 
   ngOnInit(): void {
-    this.localStorage.retrieve('AUTH_JWT_TOKEN') == null
-      ? (this.isloggedIn = false)
-      : (this.isloggedIn = true);
+    this.localStorage.retrieve('AUTH_JWT_TOKEN') !== null
+      ? (this.isloggedIn = true)
+      : (this.isloggedIn = false);
+  }
 
-    console.log(this.isPostThere);
+  postlength(q: any) {
+    this.isPostFromPostViewChildLength = q.length > 0 ? q.length : -1;
   }
 } //feed ends

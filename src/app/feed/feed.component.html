@@ -3,7 +3,7 @@
   <div class="left-container links">
     <div class="imp-links">
       <ul>
-        <li routerLink="posts">Posts</li>
+        <li routerLink="/posts">Posts</li>
         <li routerLink="watch">Watch</li>
         <li routerLink="communities">Communities</li>
         <li routerLink="show-more">See More</li>
@@ -14,10 +14,10 @@
   <!-- middle -->
   <div class="feed">
     <!-- post-view-placeholder -->
-    <app-post-view></app-post-view>
-    <!-- *ngIf="!isLoggedIn" -->
+    <app-post-view (isPostThere)="postlength($event)"></app-post-view>
+
     <div class="load-more" *ngIf="isloggedIn; else notloggedIn">
-      Hmm, No post yet
+      <div *ngIf="isPostFromPostViewChildLength == -1">Hmm, No post yet</div>
     </div>
     <ng-template #notloggedIn
       ><a routerLink="/auth" class="load-more"

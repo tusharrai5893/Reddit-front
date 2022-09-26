@@ -24,6 +24,6 @@ export class FamousCommunityComponent implements OnInit {
     this.router.navigate(['feed/new-post']);
   }
   goToCreateSubreddit() {
-    this.router.navigate(['new-community']);
+    this.router.navigate(['feed/new-community']);
   }
 }

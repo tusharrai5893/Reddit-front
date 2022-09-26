@@ -1,1 +1,39 @@
-<p>subreddit works!</p>
+<form [formGroup]="createCommunityGp" novalidate>
+  <div class="community-modal">
+    <div class="community-inner">
+      <div class="community-header">
+        <div class="modal-title">Create a community</div>
+        <fa-icon (click)="goBackToFeed($event)" [icon]="close"></fa-icon>
+      </div>
+      <div class="community-name-info">
+        <h3>Name</h3>
+        <p class="guidelines">
+          Community names including capitalization cannot be changed.
+        </p>
+      </div>
+      <div class="subreddit-name-input">
+        <span class="reddit-placeholder">r/</span>
+        <input type="text" formControlName="subredditName" />
+        <div
+          class="max-length"
+          [ngClass]="{
+            'is-invalid': community.dirty && !community.valid
+          }"
+        >
+          {{ community }} Characters remaining
+        </div>
+      </div>
+      <div class="footer-button">
+        <app-button
+          [btnLabel]="btnCreateCommunityLbl"
+          [customDisable]="!this.createCommunityGp.valid"
+          (btnFuncClick)="createCommunity($event)"
+        ></app-button>
+        <app-button
+          [btnLabel]="btnDiscardLbl"
+          (btnFuncClick)="goBackToFeed($event)"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -2,7 +2,6 @@
 
 .feed-container {
   display: flex;
-  flex-direction: row;
 }
 .left-container {
   /* flex-grow: 1; */
@@ -75,7 +74,7 @@ li:focus {
 }
 @media screen and (max-width: 977px) {
   .post-user-info {
-    font-size: 0.9rem;
+    font-size: var(--tiny-font-size);
   }
   .left-container,
   .right-container {
@@ -84,7 +83,7 @@ li:focus {
   .feed {
     flex: 100%;
     height: 100vh;
-    margin: 8% 1% 50px 1%;
+    padding: 0 5px;
   }
 }
 
@@ -98,6 +97,6 @@ li:focus {
   }
   .feed {
     height: 100vh;
-    margin: 17% 1% 50px 1%;
+    padding: 0 5px;
   }
 }
