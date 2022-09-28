@@ -1,19 +1,16 @@
-import { CreateCommunitySharedService } from './shared/createCommunity.shared.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
+  FormBuilder, FormControl, FormGroup, Validators
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
-import { SubredditRequestPayload } from '../dto/community-subreddit-payload/subreddit.req';
 import { Notyf } from 'notyf';
+import { SubredditRequestPayload } from '../dto/community-subreddit-payload/subreddit.req';
 import { NOTYF } from '../notification';
+import { CreateCommunitySharedService } from './shared/createCommunity.shared.service';
 
 @Component({
-  selector: 'app-subreddit',
+  selector: 'app-create-subreddit',
   templateUrl: './subreddit.component.html',
   styleUrls: ['./subreddit.component.css'],
 })
@@ -94,5 +91,10 @@ export class SubredditComponent implements OnInit {
         }, 1000);
       }
     );
+    this.router
+      .navigateByUrl('listViewCommunity', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate([decodeURI(window.location.pathname)]);
+      });
   }
 }

@@ -1,0 +1,9 @@
+.post-view-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.post-view-page>*{
+    width: 700px
+}

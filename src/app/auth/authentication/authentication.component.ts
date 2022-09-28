@@ -16,7 +16,6 @@ import { SignUpReqPayload } from 'src/app/dto/auth-payload/reqSignUpPayload';
 })
 export class AuthenticationComponent implements OnInit {
   hidden: boolean = true;
-  isloggedIn!: boolean;
   signInReqPayload!: SignInReqPayload;
   SignUpReqPayload!: SignUpReqPayload;
   signInForm!: FormGroup;
@@ -26,7 +25,6 @@ export class AuthenticationComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private localStorage: LocalStorageService,
     @Inject(NOTYF) private notification: Notyf
   ) {
     this.initSigInPayload(this.signInForm);
@@ -34,12 +32,8 @@ export class AuthenticationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.localStorage.clear();
     this.signInForm = this.getSignInDataFromDOM();
     this.signUpForm = this.getSignUpDataFromDOM();
-    this.authService.getJwtTokenFromLocalStorage() == null
-      ? (this.isloggedIn = false)
-      : (this.isloggedIn = true);
   }
 
   areYouOneOfUs() {

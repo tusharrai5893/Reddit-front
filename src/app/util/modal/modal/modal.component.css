@@ -1,0 +1,60 @@
+.community-modal {
+  --gap: 15px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  font-weight: 500;
+}
+.community-inner {
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.community-header {
+  display: flex;
+  margin: var(--gap);
+  font-size: 1rem;
+}
+.modal-title {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  font-weight: 700;
+}
+
+.community-name-info {
+  padding: var(--gap) var(--gap);
+}
+
+.is-invalid {
+  color: rgb(200, 67, 67);
+  display: block;
+}
+
+.is-disabled {
+  animation: shake 300ms ease-out;
+}
+
+@keyframes shake {
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}

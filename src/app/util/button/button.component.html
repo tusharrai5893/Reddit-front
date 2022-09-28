@@ -1,15 +1,9 @@
 <div class="form-button">
   <input
-    type="button"
+    type="submit"
     class="form-submit-input"
     [disabled]="customDisable"
     (click)="btnClick($event)"
     [value]="btnLabel"
   />
 </div>
-
-<!-- 
-[ngClass]="{ 'invalid-form': !this.signUpForm.valid }"
-          [disabled]="!signUpForm.valid"
-
- -->

@@ -21,6 +21,8 @@ import { ViewCommunitySubredditComponent } from './community-sidebar-right/view-
 import { NewPostComponent } from './new-post/new-post.component';
 import { SubredditComponent } from './create-subreddit/subreddit.component';
 import { ButtonComponent } from './util/button/button.component';
+import { ViewCommunityPageComponent } from './view-community-page/view-community-page.component';
+import { ModalComponent } from './util/modal/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ButtonComponent } from './util/button/button.component';
     NewPostComponent,
     SubredditComponent,
     ButtonComponent,
+    ViewCommunityPageComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

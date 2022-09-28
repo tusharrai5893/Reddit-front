@@ -5,7 +5,7 @@ import { Blur, EditorChangeContent, EditorChangeSelection } from 'ngx-quill';
 import { Notyf } from 'notyf';
 import { map, Observable } from 'rxjs';
 import { NOTYF } from '../notification';
-import { CommunitySubredditService } from './../community-sidebar-right/view-community-subreddit/shared/community.subreddit.service';
+import { CommunitySubredditService } from '../community-sidebar-right/view-community-subreddit/shared/community.subreddit.service';
 import { SubredditResponse } from './../dto/community-subreddit-payload/subreddit.resp';
 import { PostRequestPayload } from './../dto/post-payload/post-req';
 import { NewPostService } from './shared/new.post.service';

@@ -1,51 +1,33 @@
 .sidebar-subreddit-home-screen {
   display: flex;
   flex-direction: column;
-}
-.create-post-community {
-  position: relative;
-  margin: 0 8px;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
-  border: 0.5px solid black;
+  margin: 0 1rem;
   background-color: white;
-  margin-bottom: 10px;
-  width: fit-content;
+  width: 470px;
 }
-
-.banner-home-img {
-  background: url("src/assets/home-banner.png");
-  height: 48px;
-  background-size: cover;
+.subreddit-list{
+  height: 230px;
+  overflow: auto;  
 }
-.description > .create-post-community-home-title {
-  padding: 10px 10px;
-  text-align: justify;
-}
-
-.home {
+.top-community{
   display: flex;
-  flex-direction: row;
-  margin: 0 0 10px 10px;
+  justify-content: center;
+  font-family: Courier, monospace;
+  margin: 1rem 0;
+  font-size: larger;
+  
 }
-.home > span {
-  position: relative;
-  top: 1rem;
-  left: 3rem;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
+ul li{
+padding: 1rem;
+border-bottom:.5px solid lightgrey;
+list-style: none;
 }
-.home {
-  position: relative;
-}
-.alien-home-img {
-  position: absolute;
-  background: url("src/assets/reddit-home-alien.png");
-  background-size: 40px 68px;
-  height: 68px;
-  background-repeat: no-repeat;
-  top: -1rem;
-  left: 0;
-  right: 0;
-  zoom: 1.2;
+.subreddit-link{
+  text-decoration: none;
+  color: black;
 }
 
+.subreddit-link:hover{
+  font-weight: bold;
+  color: rgb(228, 21, 21);
+}

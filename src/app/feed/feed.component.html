@@ -19,11 +19,9 @@
     <div class="load-more" *ngIf="isloggedIn; else notloggedIn">
       <div *ngIf="isPostFromPostViewChildLength == -1">Hmm, No post yet</div>
     </div>
-    <ng-template #notloggedIn
-      ><a routerLink="/auth" class="load-more"
-        >Are you logged in? Click here
-      </a></ng-template
-    >
+    <ng-template #notloggedIn>
+      <app-modal [hidden]="isloggedIn"></app-modal>
+    </ng-template>
   </div>
 
   <!-- right -->

@@ -12,8 +12,10 @@ import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
   catchError,
+  filter,
   Observable,
   switchMap,
+  take,
   throwError,
 } from 'rxjs';
 
@@ -24,6 +26,7 @@ export class MyTokenInterceptor implements HttpInterceptor {
   refershTokenBehaviourSubject: BehaviorSubject<any> = new BehaviorSubject(
     null
   );
+  jwtToken = '';
   constructor(private _authService: AuthService) {}
 
   intercept(
@@ -37,10 +40,10 @@ export class MyTokenInterceptor implements HttpInterceptor {
     ) {
       return next.handle(req);
     }
-    const jwtToken = this._authService.getJwtTokenFromLocalStorage();
-    if (jwtToken) {
+    this.jwtToken = this._authService.getJwtTokenFromLocalStorage();
+    if (this.jwtToken) {
       // console.log('jwt ', req);
-      this.setTokenHeaderInReqMody = this.addTokenInHeader(req, jwtToken);
+      this.setTokenHeaderInReqMody = this.addTokenInHeader(req, this.jwtToken);
     }
     return next.handle(this.setTokenHeaderInReqMody).pipe(
       catchError((err) => {
@@ -70,8 +73,15 @@ export class MyTokenInterceptor implements HttpInterceptor {
           );
         })
       );
+    } else {
+      return this.refershTokenBehaviourSubject.pipe(
+        filter((result) => result !== null),
+        take(1),
+        switchMap((res) => {
+          return next.handle(this.addTokenInHeader(req, this.jwtToken));
+        })
+      );
     }
-    return next.handle(req);
   }
 
   addTokenInHeader(req: HttpRequest<any>, jwtToken: string): HttpRequest<any> {

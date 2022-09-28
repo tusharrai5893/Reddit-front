@@ -1,17 +1,15 @@
 <div class="sidebar-subreddit-home-screen">
-  <div class="create-post-community">
-    <div class="banner-home-create-community">
-      <div class="banner-home-img"></div>
-      <div class="home">
-        <div class="alien-home-img"></div>
-        <span>Home</span>
-      </div>
-    </div>
-    <div class="description">
-      <div class="create-post-community-home-title">
-        Your personal Reddit frontpage. Come here to check in with your favorite
-        communities.
-      </div>
-    </div>
+  <div class="top-community">Top Communities</div>
+  <div class="subreddit-list">
+    <ul>
+      <li *ngFor="let oneSubreddit of subredditList">
+        <a
+          class="subreddit-link"
+          (click)="goToViewCommunityPage(oneSubreddit.subredditName)"
+        >
+          {{ oneSubreddit.subredditName }}</a
+        >
+      </li>
+    </ul>
   </div>
 </div>

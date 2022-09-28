@@ -4,7 +4,6 @@
   display: flex;
 }
 .left-container {
-  /* flex-grow: 1; */
   flex-basis: 20%;
 }
 .links {
@@ -45,8 +44,6 @@ li:focus {
 }
 
 .right-container {
-  /* flex-grow: 1; */
-  flex-basis: 30%;
   margin-top: 5px;
 }
 .community {
@@ -66,10 +63,15 @@ li:focus {
   align-items: center;
   justify-content: center;
   font-size: medium;
+  
 }
-.load-more > button {
+.load-more {
+  position: fixed;
+  top: 50%;
+  right: 50%;
   padding: 10px 10px;
-  margin: 10px 10px;
+  /* background-color: black; */
+  color: white;
   cursor: pointer;
 }
 @media screen and (max-width: 977px) {

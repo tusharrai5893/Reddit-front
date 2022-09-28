@@ -43,6 +43,7 @@
 .post-user-info > span > a:hover {
   color: rgba(181, 49, 49, 0.828);
   font-weight: bold;
+  text-decoration: underline;
 }
 .post-subreddit-name {
   font-size: 12px;
@@ -56,35 +57,36 @@
   margin: 3px 5px;
   text-align: justify;
   max-width: 100%;
-  border-top: 0.1px solid #ccc;
+  
 }
 
 .comment-view {
-  flex-basis: 10%;
+  flex-basis: 6%;
   margin: 1px 5px;
-  border-top: 0.1px solid #ccc;
 }
-.comment-view > fa-icon {
-  margin: 0 3px;
-}
+
 .comment-view > button {
   margin: 3px 0;
-  padding: 8px 8px;
+  padding: 5px 5px;
   outline: none;
   cursor: pointer;
   border: none;
+  background-color: inherit;
 }
 .comment-view > button:hover {
   background-color: black;
   color: white;
 }
 .user-profile > img {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  border: 1px solid #4ef059;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-top: 2px;
 }
 @media screen and (max-width: 977px) {
+  *{
+    zoom: 0;
+  }
   .post-user-info {
     font-size: inherit;
   }

@@ -1,5 +1,6 @@
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AuthenticationComponent } from '../auth/authentication/authentication.component';
 
 @Component({
@@ -11,7 +12,10 @@ export class FeedComponent implements OnInit {
   isloggedIn!: boolean;
   authComponent!: AuthenticationComponent;
   isPostFromPostViewChildLength!: number;
-  constructor(private localStorage: LocalStorageService) {}
+  constructor(
+    private localStorage: LocalStorageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.localStorage.retrieve('AUTH_JWT_TOKEN') !== null
