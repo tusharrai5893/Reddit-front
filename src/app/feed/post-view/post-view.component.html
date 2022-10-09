@@ -10,18 +10,16 @@
         </div>
         <div class="post-user-info post-subreddit-name">
           <span>
-            <a routerLink="{{ singlePost.subredditName }}">{{
+            <a (click)="goToCommunityViewPage(singlePost)">{{
               singlePost.subredditName
             }}</a>
           </span>
           <span class="dot">.</span>
           <span class="post-created-by">
             Posted by
-            <a
-              class="post-created-by"
-              routerLink="new-community/{{ singlePost.userName }}"
-              >{{ "u/" + singlePost.userName }}</a
-            >
+            <a class="post-created-by" routerLink="{{ singlePost.userName }}">{{
+              "u/" + singlePost.userName
+            }}</a>
           </span>
           <span class="dot">.</span>
           <span class="post-duration">{{ singlePost.duration }}</span>
@@ -44,11 +42,10 @@
       </div>
       <div class="comment-view">
         <button>
-          <fa-icon [icon]="faMessage"> </fa-icon>
-          Comment ({{ singlePost.commentCount }})
+          <fa-icon [icon]="faMessage"></fa-icon>
+          {{ singlePost.commentCount }} Comments
         </button>
       </div>
     </div>
   </div>
 </div>
-<router-outlet></router-outlet>

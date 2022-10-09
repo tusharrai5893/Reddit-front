@@ -1,6 +1,7 @@
 .vote-container {
   position: relative;
   flex-direction: column;
+  background-color: whitesmoke;
   border-right: 0.1px solid #ccc;
   height: 100%;
 }
@@ -13,13 +14,13 @@
 }
 
 .vote-container > fa-icon {
-  margin: 0.25rem 0.25rem;
+  /* margin: 0.35rem 0.35rem; */
   outline: none;
   cursor: pointer;
   border: none;
 }
 .vote-count {
-  font-size: auto;
+  font-size: 12px;
 }
 .up:hover {
   cursor: pointer;

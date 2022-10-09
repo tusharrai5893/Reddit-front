@@ -1,8 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {
-  FormBuilder, FormControl, FormGroup, Validators
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { Notyf } from 'notyf';
 import { SubredditRequestPayload } from '../dto/community-subreddit-payload/subreddit.req';
@@ -16,7 +19,7 @@ import { CreateCommunitySharedService } from './shared/createCommunity.shared.se
 })
 export class SubredditComponent implements OnInit {
   close = faClose;
-
+  err = 21;
   btnCreateCommunityLbl = 'Create Community';
   btnDiscardLbl = 'Cancel';
 
@@ -25,25 +28,27 @@ export class SubredditComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private fb: FormBuilder,
     private subredditServc: CreateCommunitySharedService,
     @Inject(NOTYF) private notification: Notyf
   ) {
-    // this.route.paramMap.subscribe((param) => {
-    //   this.user = param.get('user');
-    // });
     this.createCommunityGp = this.getFieldDataFromDOM();
+    this.checkcCharacter21();
+  }
+  checkcCharacter21() {
+    this.community.valueChanges.subscribe((val) => {
+      if (val.length >= 21) {
+        console.log(val.length);
+        this.community.setErrors({ maxlength: true });
+      }
+      this.err = 21 - val.length;
+    });
   }
   getFieldDataFromDOM(): any {
     return this.fb.group({
       subredditName: [
         '',
-        [
-          Validators.maxLength(21),
-          Validators.required,
-          Validators.pattern('[a-zA-Z0-9]+'),
-        ],
+        [Validators.required, Validators.pattern('[a-zA-Z0-9]+')],
       ],
     });
   }

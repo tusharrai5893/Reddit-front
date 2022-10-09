@@ -7,5 +7,5 @@ import { Notyf } from 'notyf';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'Reddit';
+  // title = 'Reddit';
 }

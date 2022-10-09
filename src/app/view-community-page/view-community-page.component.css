@@ -1,9 +1,66 @@
-.post-view-page{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
+.container {
+  display: flex;
+  flex-direction: column;
+  line-height: 0;
 }
-.post-view-page>*{
-    width: 700px
+.cover {
+  background-color: blue;
+  height: 120px;
+}
+.cover img {
+  height: auto;
+  width: 100%;
+}
+.subInfo-banner {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  background-color: white;
+}
+.subInfo-profile > img {
+  position: absolute;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  border: 5px solid white;
+  top: 150px;
+  left: 350px;
+}
+.subInfo-banner span {
+  position: absolute;
+  top: 190px;
+  left: 450px;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+.subInfo-banner p {
+  position: absolute;
+  top: 216px;
+  left: 450px;
+  font-size: 13px;
+  color: #626262b1;
+}
+.subInfo-banner .posts {
+  top: 258px;
+  left: 350px;
+  font-size: 15px;
+  font-weight: 100;
+  cursor: pointer;
+}
+.posts::before {
+  content: "";
+  position: absolute;
+  height: 3px;
+  width: 43px;
+  margin-top: 10px;
+  background-color: rgb(44, 0, 189);
+}
+.post-view-page {
+  display: flex;
+  flex-basis: 50%;
+  flex-direction: column;
+  width: 800px;
+  margin-left: 20.9%;
+  margin-top: 1rem;
+  height: auto;
 }

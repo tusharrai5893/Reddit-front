@@ -1,3 +1,6 @@
+<head>
+  <title>Create a community</title>
+</head>
 <form [formGroup]="createCommunityGp" novalidate>
   <div class="community-modal">
     <div class="community-inner">
@@ -13,14 +16,18 @@
       </div>
       <div class="subreddit-name-input">
         <span class="reddit-placeholder">r/</span>
-        <input type="text" formControlName="subredditName" />
+        <input type="text" [maxlength]="21" formControlName="subredditName" />
         <div
           class="max-length"
           [ngClass]="{
             'is-invalid': community.dirty && !community.valid
           }"
         >
-          {{ community }} Characters remaining
+          {{
+            err < 10
+              ? err + " Character remaining"
+              : err + " Characters remaining"
+          }}
         </div>
       </div>
       <div class="footer-button">

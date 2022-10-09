@@ -6,16 +6,26 @@ import { ViewCommunitySubredditComponent } from './community-sidebar-right/view-
 import { SubredditComponent } from './create-subreddit/subreddit.component';
 import { FeedComponent } from './feed/feed.component';
 import { NewPostComponent } from './new-post/new-post.component';
+import { PostByUserComponent } from './post-by-user/post-by-user.component';
 import { ViewCommunityPageComponent } from './view-community-page/view-community-page.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
-  { path: 'auth', component: AuthenticationComponent },
+  {
+    path: '',
+    //children: [{ path: '', component: AuthenticationComponent }],
+    component: AuthenticationComponent,
+  },
+
   {
     path: 'feed',
     component: FeedComponent,
-    children: [{ path: 'new-community', component: SubredditComponent }],
-    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'create',
+        component: SubredditComponent,
+        canActivate: [AuthGuard],
+      },
+    ],
   },
   {
     path: ':feed/new-post',
@@ -24,10 +34,18 @@ export const routes: Routes = [
   },
   { path: 'listViewCommunity', component: ViewCommunitySubredditComponent },
   {
-    path: 'feed/:community',
-    component: ViewCommunityPageComponent,
+    path: 'r/:communityPage',
+    children: [
+      { path: ':id', component: ViewCommunityPageComponent, pathMatch: 'full' },
+      {
+        path: 'community/:postId',
+        component: ViewCommunityPageComponent,
+        pathMatch: 'full',
+      },
+    ],
     canActivate: [AuthGuard],
   },
+  { path: 'post', component: PostByUserComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

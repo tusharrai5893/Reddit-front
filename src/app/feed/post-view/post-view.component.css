@@ -35,18 +35,19 @@
   font-size: 25px;
   margin: 0 5px;
   line-height: 2px;
+  vertical-align: auto;
 }
 .post-user-info > span > a {
   text-decoration: none;
   color: rgb(127, 123, 123);
+  cursor: pointer;
 }
 .post-user-info > span > a:hover {
-  color: rgba(181, 49, 49, 0.828);
-  font-weight: bold;
-  text-decoration: underline;
+  color: rgba(26, 48, 213, 0.918);
+  font-weight: bolder;
 }
 .post-subreddit-name {
-  font-size: 12px;
+  font-size: 11px;
 }
 .post-created-by {
   margin-trim: none;
@@ -57,25 +58,27 @@
   margin: 3px 5px;
   text-align: justify;
   max-width: 100%;
-  
 }
 
 .comment-view {
   flex-basis: 6%;
-  margin: 1px 5px;
+  margin: 5px 5px;
 }
 
 .comment-view > button {
-  margin: 3px 0;
   padding: 5px 5px;
   outline: none;
   cursor: pointer;
   border: none;
   background-color: inherit;
+  color: #636363;
+  font-weight: 800;
 }
-.comment-view > button:hover {
-  background-color: black;
-  color: white;
+.comment-view:hover {
+  opacity: 0.4;
+}
+.comment-view fa-icon {
+  margin: 0 3px 0 0;
 }
 .user-profile > img {
   width: 25px;
@@ -84,7 +87,7 @@
   margin-top: 2px;
 }
 @media screen and (max-width: 977px) {
-  *{
+  * {
     zoom: 0;
   }
   .post-user-info {

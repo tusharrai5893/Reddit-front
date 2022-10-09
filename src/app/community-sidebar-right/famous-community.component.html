@@ -1,31 +1,33 @@
-<div class="sidebar-subreddit-home-screen">
-  <div class="create-post-community" *ngIf="isloggedIn">
-    <div class="banner-home-create-community">
-      <div class="banner-home-img"></div>
-      <div class="home">
-        <div class="alien-home-img"></div>
-        <span>Home</span>
+<div class="container">
+  <div class="sidebar-subreddit-home-screen">
+    <div class="create-post-community" *ngIf="isloggedIn">
+      <div class="banner-home-create-community">
+        <div class="banner-home-img"></div>
+        <div class="home">
+          <div class="alien-home-img"></div>
+          <span>Home</span>
+        </div>
+      </div>
+      <div class="description">
+        <div class="create-post-community-home-title">
+          Your personal Reddit frontpage. Come here to check in with your
+          favorite communities.
+        </div>
+      </div>
+      <div class="create-post">
+        <button (click)="goToCreatePost()" id="create-post-button">
+          Create Post
+        </button>
+        <button (click)="goToCreateSubreddit()" id="create-community-button">
+          Create Community
+        </button>
       </div>
     </div>
-    <div class="description">
-      <div class="create-post-community-home-title">
-        Your personal Reddit frontpage. Come here to check in with your favorite
-        communities.
-      </div>
-    </div>
-    <div class="create-post">
-      <button (click)="goToCreatePost()" id="create-post-button">
-        Create Post
-      </button>
-      <button (click)="goToCreateSubreddit()" id="create-community-button">
-        Create Community
-      </button>
-    </div>
-  </div>
 
-  <app-view-community></app-view-community>
+    <app-view-community></app-view-community>
 
-  <div class="bottom-footer-side">
-    <div class="company-name">Reddit Inc © 2022. All rights reserved</div>
+    <div class="bottom-footer-side">
+      <div class="company-name">Reddit Inc © 2022. All rights reserved</div>
+    </div>
   </div>
 </div>

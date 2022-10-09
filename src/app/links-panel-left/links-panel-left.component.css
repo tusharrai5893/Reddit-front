@@ -1,0 +1,32 @@
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imp-links {
+  position: fixed;
+  font-size: 1.4rem;
+  top: 50%;
+}
+.imp-links ul li {
+  list-style: none;
+  margin-bottom: 25px;
+  color: #636363;
+  width: max-content;
+  cursor: pointer;
+}
+
+.active,
+li:hover,
+li:focus {
+  background: white;
+  padding: 10px 10px;
+  height: auto;
+  border: 1px dotted black;
+}
+
+.links ul li:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}

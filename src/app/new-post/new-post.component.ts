@@ -54,12 +54,6 @@ export class NewPostComponent implements OnInit {
   fetchAllCommunityName() {
     this.subreddit.getAllSubreddit().subscribe((data) => {
       Object.assign(this.communityList$, data);
-
-      // this.communityList$.forEach((d) => {
-      //   d.subredditName.startsWith('r/') == false
-      //     ? (d.subredditName = 'r/' + d.subredditName)
-      //     : d.subredditName;
-      // });
     });
   }
 

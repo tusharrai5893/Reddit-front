@@ -1,14 +1,8 @@
+<title>Reddit - Dive into anything</title>
 <div class="feed-container">
   <!-- left -->
-  <div class="left-container links">
-    <div class="imp-links">
-      <ul>
-        <li routerLink="/posts">Posts</li>
-        <li routerLink="watch">Watch</li>
-        <li routerLink="communities">Communities</li>
-        <li routerLink="show-more">See More</li>
-      </ul>
-    </div>
+  <div class="left-container">
+    <app-links-panel-left></app-links-panel-left>
   </div>
 
   <!-- middle -->
@@ -16,18 +10,19 @@
     <!-- post-view-placeholder -->
     <app-post-view (isPostThere)="postlength($event)"></app-post-view>
 
-    <div class="load-more" *ngIf="isloggedIn; else notloggedIn">
-      <div *ngIf="isPostFromPostViewChildLength == -1">Hmm, No post yet</div>
+    <div class="load-more">
+      <div *ngIf="isPostFromPostViewChildLength !== -1; else noPostTemplate">
+        <p>Thats All Folks</p>
+      </div>
+      <ng-template #noPostTemplate>
+        <p>Hmm, No post yet!!</p>
+      </ng-template>
     </div>
-    <ng-template #notloggedIn>
-      <app-modal [hidden]="isloggedIn"></app-modal>
-    </ng-template>
   </div>
 
   <!-- right -->
   <div class="right-container">
-    <div class="community">
-      <app-famous-community></app-famous-community>
-    </div>
+    <app-famous-community></app-famous-community>
   </div>
 </div>
+<router-outlet></router-outlet>

@@ -1,3 +1,29 @@
+<title>{{ pageTitle | uppercase }}</title>
+
+<div class="container">
+  <div class="cover">
+    <img src="assets/home-banner.png" />
+  </div>
+  <div class="subInfo-banner">
+    <div class="subInfo-profile">
+      <img src="assets/home-banner.png" />
+    </div>
+    <span [innerText]="pageTitle"></span>
+    <p [innerText]="pageTitle"></p>
+    <span class="posts">Posts</span>
+  </div>
+</div>
+
 <div class="post-view-page">
-  <app-post-view></app-post-view>
+  <app-post-view
+    (isPostThere)="postlength($event)"
+    [post-view-page]="postResList"
+  ></app-post-view>
+
+  <div *ngIf="isPostFromPostViewChildLength !== -1; else noPostTemplate">
+    <p>Thats All Folks</p>
+  </div>
+  <ng-template class="post-view-page" #noPostTemplate>
+    <p>Hmm, No post yet!!</p>
+  </ng-template>
 </div>

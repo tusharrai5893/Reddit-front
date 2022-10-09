@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { SubredditResponse } from '../../dto/community-subreddit-payload/subreddit.resp';
 import { CommunitySubredditService } from './shared/community.subreddit.service';
@@ -8,8 +14,9 @@ import { CommunitySubredditService } from './shared/community.subreddit.service'
   templateUrl: './view-community-subreddit.component.html',
   styleUrls: ['./view-community-subreddit.component.css'],
 })
-export class ViewCommunitySubredditComponent implements OnInit {
+export class ViewCommunitySubredditComponent implements OnInit, OnDestroy {
   subredditList = new Array<SubredditResponse>();
+  redditId!: SubredditResponse[];
 
   constructor(
     private _subredditSerc: CommunitySubredditService,
@@ -23,6 +30,15 @@ export class ViewCommunitySubredditComponent implements OnInit {
   }
 
   goToViewCommunityPage(link: string) {
-    this._router.navigateByUrl(`feed/${link}`);
+    let urlParam = link.split('/')[1];
+    this.redditId = this.subredditList.filter((e) => {
+      return e.subredditName.split('/')[1] == urlParam;
+    });
+
+    this._router.navigate([
+      `r/${urlParam + '/' + this.redditId[0].subredditId}`,
+    ]);
   }
+
+  ngOnDestroy(): void {}
 }

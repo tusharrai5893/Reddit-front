@@ -23,6 +23,8 @@ import { SubredditComponent } from './create-subreddit/subreddit.component';
 import { ButtonComponent } from './util/button/button.component';
 import { ViewCommunityPageComponent } from './view-community-page/view-community-page.component';
 import { ModalComponent } from './util/modal/modal/modal.component';
+import { PostByUserComponent } from './post-by-user/post-by-user.component';
+import { LinksPanelLeftComponent } from './links-panel-left/links-panel-left.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { ModalComponent } from './util/modal/modal/modal.component';
     ButtonComponent,
     ViewCommunityPageComponent,
     ModalComponent,
+    PostByUserComponent,
+    LinksPanelLeftComponent,
   ],
   imports: [
     BrowserModule,

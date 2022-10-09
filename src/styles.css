@@ -31,16 +31,13 @@
   margin: 0;
   transition: all 0.2s ease-in-out;
 }
-nav {
-  transition: all 0.2s ease-in-out;
-}
+
 body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   background-color: #dae0e6;
-  
 }
-button{
+button {
   outline: none;
   border: none;
 }
