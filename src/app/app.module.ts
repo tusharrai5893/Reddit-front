@@ -25,6 +25,7 @@ import { ViewCommunityPageComponent } from './view-community-page/view-community
 import { ModalComponent } from './util/modal/modal/modal.component';
 import { PostByUserComponent } from './post-by-user/post-by-user.component';
 import { LinksPanelLeftComponent } from './links-panel-left/links-panel-left.component';
+import { CommentPageComponent } from './comment-page/comment-page.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { LinksPanelLeftComponent } from './links-panel-left/links-panel-left.com
     ModalComponent,
     PostByUserComponent,
     LinksPanelLeftComponent,
+    CommentPageComponent,
   ],
   imports: [
     BrowserModule,

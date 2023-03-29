@@ -1,4 +1,4 @@
 export interface SubredditRequestPayload {
   subredditName: string;
-  subredditDescription?: string;
+  subredditDescription: string;
 }

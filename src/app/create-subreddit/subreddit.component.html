@@ -1,5 +1,6 @@
 <head>
   <title>Create a community</title>
+  <meta charset="utf-8" />
 </head>
 <form [formGroup]="createCommunityGp" novalidate>
   <div class="community-modal">
@@ -16,7 +17,12 @@
       </div>
       <div class="subreddit-name-input">
         <span class="reddit-placeholder">r/</span>
-        <input type="text" [maxlength]="21" formControlName="subredditName" />
+        <input
+          type="text"
+          [maxlength]="21"
+          formControlName="subredditName"
+          autofocus
+        />
         <div
           class="max-length"
           [ngClass]="{

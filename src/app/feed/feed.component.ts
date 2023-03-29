@@ -1,7 +1,4 @@
-import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit, Optional } from '@angular/core';
-import { LocalStorageService } from 'ngx-webstorage';
-import { AuthenticationComponent } from '../auth/authentication/authentication.component';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-feed',

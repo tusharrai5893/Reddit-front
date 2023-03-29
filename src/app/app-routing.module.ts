@@ -1,3 +1,4 @@
+import { CommentPageComponent } from './comment-page/comment-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
@@ -12,7 +13,6 @@ import { ViewCommunityPageComponent } from './view-community-page/view-community
 export const routes: Routes = [
   {
     path: '',
-    //children: [{ path: '', component: AuthenticationComponent }],
     component: AuthenticationComponent,
   },
 
@@ -23,9 +23,10 @@ export const routes: Routes = [
       {
         path: 'create',
         component: SubredditComponent,
-        canActivate: [AuthGuard],
+        pathMatch: 'full',
       },
     ],
+    canActivate: [AuthGuard],
   },
   {
     path: ':feed/new-post',
@@ -46,6 +47,11 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'post', component: PostByUserComponent, canActivate: [AuthGuard] },
+  {
+    path: 'comment/:postid',
+    component: CommentPageComponent,
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

@@ -33,9 +33,9 @@ export class SubredditComponent implements OnInit {
     @Inject(NOTYF) private notification: Notyf
   ) {
     this.createCommunityGp = this.getFieldDataFromDOM();
-    this.checkcCharacter21();
+    this.checkCharacter21();
   }
-  checkcCharacter21() {
+  checkCharacter21() {
     this.community.valueChanges.subscribe((val) => {
       if (val.length >= 21) {
         console.log(val.length);
@@ -57,6 +57,7 @@ export class SubredditComponent implements OnInit {
   ): SubredditRequestPayload {
     return (this.subredditReqPayload = {
       subredditName: 'r/' + communityFG?.value.subredditName,
+      subredditDescription: '',
     });
   }
   get community() {

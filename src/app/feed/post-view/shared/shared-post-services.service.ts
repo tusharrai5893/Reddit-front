@@ -30,4 +30,13 @@ export class SharedPostServices {
       this.BASE_URL + 'post/fetchOne-post/' + postId
     );
   }
+
+  getAllComments(): Observable<Array<any>> {
+    return this._http.get<any[]>(this.BASE_URL + 'comment/fetchAll-comment');
+  }
+  fetchCommentByPost(postId: number): Observable<Array<any>> {
+    return this._http.get<any[]>(
+      this.BASE_URL + `comment/fetchCommentByPost-comment/${postId}`
+    );
+  }
 } //service ends

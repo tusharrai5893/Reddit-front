@@ -41,7 +41,7 @@
         ></p>
       </div>
       <div class="comment-view">
-        <button>
+        <button (click)="commentPage(singlePost)">
           <fa-icon [icon]="faMessage"></fa-icon>
           {{ singlePost.commentCount }} Comments
         </button>

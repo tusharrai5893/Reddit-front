@@ -99,7 +99,8 @@ export class NewPostComponent implements OnInit {
       (data) => {
         if (data) {
           this.notification.success('New post created');
-          this.router.navigate(['feed']);
+          // this.router.navigate(['feed']);
+          this.goBackToFeed();
         } else {
           this.notification.error(`Something wrong`);
         }

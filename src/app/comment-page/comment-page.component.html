@@ -1,0 +1,12 @@
+<div *ngFor="let c of post">
+  {{ c.commentText }}
+  <div *ngFor="let child of c.comments" style="margin-left: 5px">
+    {{ child.commentText }}
+    <div *ngFor="let p of child.children" style="margin-left: 10px">
+      {{ p.commentText }}
+      <div *ngFor="let pb of p.children" style="margin-left: 15px">
+      {{ pb.commentText }}
+    </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 export interface PostRequestPayload {
-  postName?: string;
+  postName: string;
   postDescription?: string;
   url: string;
   subredditName: string;

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { throwError } from 'rxjs';
 import { PostResponsePayload } from './../../dto/post-payload/post-res';
 
 import { ActivatedRoute, Router } from '@angular/router';
@@ -48,7 +47,6 @@ export class PostViewComponent implements OnInit {
           Object.assign(this.post, this.postViewPage);
         } else if (this.acParam.has('postId')) {
           console.log('<post-view>', this.postViewPage);
-
           Object.assign(this.post, this.postViewPage);
         } else {
           Object.assign(this.post, v);
@@ -57,5 +55,9 @@ export class PostViewComponent implements OnInit {
       error: (e) => alert(e),
       complete: () => this.isPostThere.emit(this.post),
     });
+  }
+
+  commentPage(post: PostResponsePayload) {
+    this.router.navigate([`comment/${post.postId}`]);
   }
 }
