@@ -48,7 +48,7 @@ export class SubredditComponent implements OnInit {
     return this.fb.group({
       subredditName: [
         '',
-        [Validators.required, Validators.pattern('[a-zA-Z0-9]+')],
+        [Validators.required, Validators.pattern('[a-zA-Z0-9 ]+')],
       ],
     });
   }
