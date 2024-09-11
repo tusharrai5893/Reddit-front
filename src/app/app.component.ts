@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Notyf } from 'notyf';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +6,9 @@ import { Notyf } from 'notyf';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  // title = 'Reddit';
+  title = 'Reddit';
+  isAuthenticated: Boolean = false;
+  ngOnInit(): void {
+    console.log('redndering header');
+  }
 }

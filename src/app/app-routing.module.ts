@@ -9,13 +9,17 @@ import { FeedComponent } from './feed/feed.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { PostByUserComponent } from './post-by-user/post-by-user.component';
 import { ViewCommunityPageComponent } from './view-community-page/view-community-page.component';
+import { AccountVerifyComponent } from './auth/account-verify/account-verify.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: AuthenticationComponent,
   },
-
+  {
+    path: 'api/auth/verifyAccount/:p',
+    component: AccountVerifyComponent,
+  },
   {
     path: 'feed',
     component: FeedComponent,

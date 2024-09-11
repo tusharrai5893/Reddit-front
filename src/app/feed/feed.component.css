@@ -1,7 +1,16 @@
+.nav-outlet {
+  position: relative;
+  margin-bottom: 49px;
+  height: 100%;
+  width: 100%;
+  background-color: blue;
+}
+
 /* feed */
 
 .feed-container {
   display: flex;
+  margin-top: auto;
 }
 .left-container {
   flex-basis: 20%;
