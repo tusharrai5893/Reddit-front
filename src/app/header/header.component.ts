@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Component, OnInit, Output } from '@angular/core';
+import { AuthService } from '../auth/shared/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,8 @@ import { Component, OnInit, Output } from '@angular/core';
 export class HeaderComponent implements OnInit {
   constructor(
     private _localStorage: LocalStorageService,
-    private _router: Router
+    private _router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -18,7 +20,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this._localStorage.clear();
+    this.authService.clearLS();
+    this.authService.logout();
     this._router.navigate(['/']);
   }
 }

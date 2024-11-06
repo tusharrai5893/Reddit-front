@@ -44,6 +44,10 @@ export class AuthService {
       );
   }
 
+  logout() {
+    this._http.post<any>(this.BASE_URL + 'auth/logout', null);
+  }
+
   getJwtTokenFromLocalStorage(): string {
     console.warn('AUTH_JWT_TOKEN called');
     return this.localStorage.retrieve('AUTH_JWT_TOKEN');
@@ -71,5 +75,10 @@ export class AuthService {
   }
   getUsernameFromLocalStorage() {
     return this.localStorage.retrieve('AUTH_USER_NAME');
+  }
+
+  clearLS() {
+    this.localStorage.clear('AUTH_JWT_TOKEN');
+    this.localStorage.clear('AUTH_EXIPIRES_AT');
   }
 } // service class ends

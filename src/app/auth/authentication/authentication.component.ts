@@ -16,6 +16,7 @@ import { SignUpReqPayload } from 'src/app/dto/auth-payload/reqSignUpPayload';
 })
 export class AuthenticationComponent implements OnInit {
   hidden: boolean = true;
+  islogin: boolean = false;
   signInReqPayload!: SignInReqPayload;
   SignUpReqPayload!: SignUpReqPayload;
   signInForm!: FormGroup;
@@ -32,6 +33,14 @@ export class AuthenticationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.islogin) {
+      this.authService.clearLS();
+    } else {
+      this.islogin = this.authService.getJwtTokenFromLocalStorage() != null;
+      this.router.navigate(['/feed']);
+      console.log(this.islogin);
+    }
+
     this.signInForm = this.getSignInDataFromDOM();
     this.signUpForm = this.getSignUpDataFromDOM();
   }
