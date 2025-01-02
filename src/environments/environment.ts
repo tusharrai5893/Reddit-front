@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //base_url: 'https://reddit-clone-5893.herokuapp.com/api/',
-  base_url: 'http://192.168.29.201:8080/api/',
+  //base_url: 'https://reddit-clone-5893.herokuapp.com/api/', ng serve --host 0.0.0.0
+  base_url: 'http://192.168.29.82:8080/api/',
 };
 
 /*
