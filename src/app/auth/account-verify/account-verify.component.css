@@ -1,0 +1,21 @@
+.account-verify-container {
+    text-align: center;
+    margin-top: calc(50vh - 200px);
+    
+}
+.checkmark {
+    color: green;
+    font-size: 50px;
+}
+.checkmark-red{
+  color: red;
+  font-size: 50px;
+}
+.enb { 
+  position: relative;
+  margin-top: 20px;
+  }
+  .enb > * {
+    display: flex;
+    justify-content: center;   
+  }

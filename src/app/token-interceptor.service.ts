@@ -34,6 +34,7 @@ export class MyTokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     if (
+      req.url.indexOf('verifyAccount') !== -1 ||
       req.url.indexOf('refreshToken') !== -1 ||
       req.url.indexOf('login') !== -1 ||
       req.url.indexOf('signup') !== -1

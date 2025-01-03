@@ -1,1 +1,17 @@
-<p>account-verify works!</p>
+<title>Account Verification</title>
+<div class="account-verify-container">
+    {{countering}}
+    <h1>
+        <div *ngIf="!verified" class="checkmark">&#10004;</div>
+        <div *ngIf="verified" class="checkmark-red">&#10005;</div>
+        {{accountVerifyState}}</h1>
+    {{responseMessage}}
+</div>
+<div class="enb">
+    <app-button
+    [btnLabel]="btnlabelEnableAccount"
+    (btnFuncClick)="verifyAccount()"
+    [customDisable]="!this.verified"
+    ></app-button>
+</div>
+

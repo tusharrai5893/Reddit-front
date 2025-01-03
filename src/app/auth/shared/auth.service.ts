@@ -24,6 +24,17 @@ export class AuthService {
     username: this.getUsernameFromLocalStorage(),
   };
 
+  verifyToken(token:string): Observable<any> {
+    //TODO: check token interceptor file if getting type error in browswer console
+    
+     return this._http.get(this.BASE_URL + 'auth/verifyAccount',
+      {
+        params:{token:token},
+        reportProgress: true,
+        responseType: 'text' });
+     
+  }
+
   signUpService(signUpReqPayload: SignUpReqPayload): Observable<any> {
     return this._http.post(this.BASE_URL + 'auth/signup', signUpReqPayload, {
       responseType: 'text',
