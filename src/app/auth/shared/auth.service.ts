@@ -30,8 +30,7 @@ export class AuthService {
      return this._http.get(this.BASE_URL + 'auth/verifyAccount',
       {
         params:{token:token},
-        reportProgress: true,
-        responseType: 'text' });
+        reportProgress: true });
      
   }
 

@@ -21,7 +21,7 @@
           type="text"
           [maxlength]="21"
           formControlName="subredditName"
-          autofocus
+          autofocus="true"
         />
         <div
           class="max-length"
@@ -40,7 +40,7 @@
         <app-button
           [btnLabel]="btnCreateCommunityLbl"
           [customDisable]="!this.createCommunityGp.valid"
-          (btnFuncClick)="createCommunity($event)"
+          (btnFuncClick)="createCommunity()"
         ></app-button>
         <app-button
           [btnLabel]="btnDiscardLbl"

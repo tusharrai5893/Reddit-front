@@ -5,8 +5,8 @@
   width: 100%;
 }
 .subreddit-list {
-  height: 230px;
-  overflow: auto;
+  height: auto;
+  /* overflow: auto; */
 }
 .top-community {
   display: flex;

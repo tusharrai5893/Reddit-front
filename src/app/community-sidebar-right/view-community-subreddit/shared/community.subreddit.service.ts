@@ -20,7 +20,7 @@ export class CommunitySubredditService {
 
   getSubredditById(redditID: number): Observable<SubredditResponse> {
     return this._http.get<SubredditResponse>(
-      `${this.BASE_URL}${`subreddit/${redditID}`}`
+      `${this.BASE_URL}${`subreddit/fetchAll-subreddit/${redditID}`}`
     );
   }
 }

@@ -1,3 +1,4 @@
+import { ResSignInPayload } from './../dto/auth-payload/resSignInPayload';
 import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -11,6 +12,8 @@ import { Notyf } from 'notyf';
 import { SubredditRequestPayload } from '../dto/community-subreddit-payload/subreddit.req';
 import { NOTYF } from '../notification';
 import { CreateCommunitySharedService } from './shared/createCommunity.shared.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { SubredditResponse } from '../dto/community-subreddit-payload/subreddit.resp';
 
 @Component({
   selector: 'app-create-subreddit',
@@ -44,6 +47,7 @@ export class SubredditComponent implements OnInit {
       this.err = 21 - val.length;
     });
   }
+
   getFieldDataFromDOM(): any {
     return this.fb.group({
       subredditName: [
@@ -52,6 +56,7 @@ export class SubredditComponent implements OnInit {
       ],
     });
   }
+
   initCreateCommunityPayloadToAPI(
     communityFG: FormGroup
   ): SubredditRequestPayload {
@@ -72,31 +77,32 @@ export class SubredditComponent implements OnInit {
   checkCommuityExist() {
     console.log(this.createCommunityGp.valueChanges);
   }
-  createCommunity(event: any) {
+  createCommunity() {
     const communityPayloadToAPI = this.initCreateCommunityPayloadToAPI(
       this.createCommunityGp
     );
     this.subredditServc.createNewCommunity(communityPayloadToAPI).subscribe(
-      (data) => {
-        if (data) {
-          this.notification.success('New Community created');
+      (res:SubredditResponse) => {
+          this.notification.success(`Community ${res.subredditName} created successfully`);
           this.router.navigate(['feed']);
-        }
       },
-      (error) => {
+      (error:HttpErrorResponse) => {
+        error.status === 500 ? this.notification.error(`Community ${this.createCommunityGp.value.subredditName} already exist`) : this.notification.error('Something went wrong');
         document
           .querySelector('.community-modal')
           ?.classList.add('is-disabled');
-
-        this.notification.error('Server is down');
 
         setTimeout(() => {
           document
             .querySelector('.community-modal')
             ?.classList.remove('is-disabled');
         }, 1000);
-      }
+      },
+      // complete => {
+      //   console.log('completed', complete);
+      // }
     );
+
     this.router
       .navigateByUrl('listViewCommunity', { skipLocationChange: true })
       .then(() => {
