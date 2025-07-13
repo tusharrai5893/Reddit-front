@@ -19,10 +19,12 @@ export class AuthService {
     private localStorage: LocalStorageService
   ) {}
 
-  refreshTokenPayload = {
-    refreshToken: this.getRefreshToken(),
-    username: this.getUsernameFromLocalStorage(),
-  };
+  get refreshTokenPayload() {
+    return {
+      refreshToken: this.getRefreshToken(),
+      username: this.getUsernameFromLocalStorage(),
+    };
+  }
 
   verifyToken(token:string): Observable<any> {
     //TODO: check token interceptor file if getting type error in browswer console
@@ -80,7 +82,7 @@ export class AuthService {
       );
   }
 
-  getRefreshToken() {
+  get getRefreshToken() {
     return this.localStorage.retrieve('AUTH_REFRESH_TOKEN');
   }
   getUsernameFromLocalStorage() {

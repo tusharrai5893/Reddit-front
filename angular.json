@@ -25,7 +25,10 @@
               "node_modules/quill/dist/quill.bubble.css",
               "node_modules/quill/dist/quill.snow.css"
             ],
-            "scripts": ["node_modules/notyf/notyf.min.js"]
+            "scripts": ["node_modules/notyf/notyf.min.js"],
+            "allowedCommonJsDependencies": [
+              "quill"
+            ]
           },
           "configurations": {
             "production": {
@@ -67,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Reddit-Front:build:production"
+              "buildTarget": "Reddit-Front:build:production"
             },
             "development": {
-              "browserTarget": "Reddit-Front:build:development"
+              "buildTarget": "Reddit-Front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Reddit-Front:build"
+            "buildTarget": "Reddit-Front:build"
           }
         },
         "test": {
